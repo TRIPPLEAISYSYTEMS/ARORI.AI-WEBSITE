@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
             {/* Logo Image */}
             <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center transition-transform duration-500 hover:scale-105">
               <img 
-                src="/logo.png" 
+                src="/ARORI_AI LOGO.png" 
                 alt="Arori.AI Logo" 
                 className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]"
               />
