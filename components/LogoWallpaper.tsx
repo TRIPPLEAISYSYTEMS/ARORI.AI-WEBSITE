@@ -27,7 +27,7 @@ const LogoWallpaper: React.FC = () => {
       >
          {/* Using the logo as a massive background element */}
          <img 
-            src="/logo.png" 
+            src="logo.png" 
             alt="" 
             className="w-[120vmax] h-[120vmax] max-w-none object-contain animate-[spin_120s_linear_infinite]" 
          />
