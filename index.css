@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+:root {
+  --canvas-bg: oklch(0.13 0.012 70);
+  --gold-accent: oklch(0.8 0.14 82);
+  --gold-accent-hover: oklch(0.86 0.16 84);
+  --champagne-white: oklch(0.95 0.02 85);
+  --warm-gray: oklch(0.74 0.03 82);
+  --glass-bg: oklch(0.18 0.02 75 / 45%);
+  --glass-bg-elevated: oklch(0.18 0.02 75 / 75%);
+  --glass-border: oklch(0.8 0.12 82 / 22%);
+  --glass-border-hover: oklch(0.8 0.14 82 / 45%);
+  --glass-shadow: 0 20px 60px oklch(0 0 0 / 50%), inset 0 1px 0 oklch(0.9 0.12 85 / 18%);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  background-color: var(--canvas-bg);
+  color: var(--champagne-white);
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--canvas-bg);
+  color: var(--warm-gray);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Typography Tokens */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Sora', sans-serif;
+  color: var(--champagne-white);
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Glassmorphism Tiles & Cards */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 24px 70px oklch(0 0 0 / 60%), inset 0 1px 0 oklch(0.9 0.14 85 / 28%);
+}
+
+.glass-panel-elevated {
+  background: var(--glass-bg-elevated);
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-pill {
+  background: oklch(0.18 0.02 75 / 55%);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px oklch(0 0 0 / 35%), inset 0 1px 0 oklch(0.9 0.12 85 / 20%);
+}
+
+/* Glassmorphic Icon Containers */
+.glass-icon {
+  background: oklch(0.16 0.02 75 / 60%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid oklch(0.8 0.12 82 / 30%);
+  box-shadow: inset 0 1px 0 oklch(0.9 0.12 85 / 22%), 0 6px 18px oklch(0 0 0 / 30%);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-icon:hover, .group:hover .glass-icon {
+  border-color: oklch(0.8 0.14 82 / 60%);
+  background: oklch(0.8 0.14 82 / 16%);
+  box-shadow: inset 0 1px 0 oklch(0.9 0.14 85 / 35%), 0 8px 24px oklch(0.8 0.14 82 / 25%);
+}
+
+/* Golden Gradients & Accents */
+.gold-gradient-text {
+  background: linear-gradient(135deg, oklch(0.92 0.08 85) 0%, oklch(0.8 0.14 82) 50%, oklch(0.7 0.16 78) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-accent {
+  color: var(--gold-accent);
+}
+
+.gold-glow {
+  box-shadow: 0 0 35px oklch(0.8 0.14 82 / 20%);
+}
+
+/* Numbered Eyebrow */
+.eyebrow-badge {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.eyebrow-badge::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background-color: var(--gold-accent);
+  opacity: 0.6;
+}
+
+/* Continuous Marquee Ticker */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-slow {
+  animation: marquee 48s linear infinite;
+}
+
+.animate-marquee-reverse-slow {
+  animation: marquee-reverse 48s linear infinite;
+}
+
+/* Sparkling Smooth Background Aesthetics */
+.sparkling-bg-aura {
+  background: 
+    radial-gradient(circle at 50% 15%, oklch(0.8 0.14 82 / 6%) 0%, transparent 45%),
+    radial-gradient(circle at 85% 60%, oklch(0.7 0.16 78 / 5%) 0%, transparent 40%),
+    radial-gradient(circle at 15% 80%, oklch(0.8 0.14 82 / 4%) 0%, transparent 40%);
+}

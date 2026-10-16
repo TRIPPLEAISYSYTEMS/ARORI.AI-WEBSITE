@@ -1,26 +1,54 @@
 import React from 'react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  currentView?: string;
+}
+
+const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer className="bg-slate-950 border-t border-cyan-900/30 py-10 px-4 relative z-10">
-      <div className="max-w-7xl mx-auto text-center">
-        <div className="mb-4">
-            <span className="text-2xl font-bold tracking-tight">
-                <span className="text-white">Arori</span>
-                <span className="text-cyan-400">.AI</span>
-            </span>
+    <footer className="border-t border-[oklch(0.8_0.12_82/18%)] bg-[oklch(0.12_0.012_70)] py-14 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-[oklch(0.8_0.12_82/12%)]">
+          {/* Brand */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="flex items-center space-x-2.5 mb-2">
+              <div className="w-8 h-8 rounded-full bg-[oklch(0.14_0.015_70)] border border-[oklch(0.8_0.12_82/30%)] flex items-center justify-center p-1 overflow-hidden">
+                <img 
+                  src="logo.png" 
+                  alt="TRIPPLE AI SYSTEMS Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="font-heading font-extrabold text-base tracking-tight text-champagne">
+                TRIPPLE <span className="gold-gradient-text">AI SYSTEMS</span>
+              </span>
+            </div>
+            <p className="text-xs text-warm-gray max-w-sm">
+              Sovereign enterprise autonomy pipelines, bespoke multi-agent engineering, and real-time operational telemetry.
+            </p>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex flex-wrap justify-center gap-6 text-xs font-semibold text-warm-gray">
+            <a href="#about" className="hover:text-gold transition-colors">About</a>
+            <a href="#services" className="hover:text-gold transition-colors">Services</a>
+            <a href="#process" className="hover:text-gold transition-colors">Process</a>
+            <a href="#testimonials" className="hover:text-gold transition-colors">Case Studies</a>
+            <a href="#faq" className="hover:text-gold transition-colors">FAQ</a>
+            <a href="#contact" className="text-gold hover:text-champagne transition-colors">Initiate Contact</a>
+          </div>
         </div>
-        <p className="text-gray-500 text-sm mb-6 max-w-md mx-auto">
-            Transforming businesses through intelligent automation, custom agent engineering, and data-driven insights.
-        </p>
-        <div className="flex justify-center space-x-6 mb-8 text-sm text-gray-400">
-            <a href="#services" className="hover:text-cyan-400 transition">Services</a>
-            <a href="#process" className="hover:text-cyan-400 transition">Process</a>
-            <a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
+
+        {/* Bottom Credits */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-warm-gray gap-4">
+          <p>
+            &copy; {new Date().getFullYear()} TRIPPLE AI SYSTEMS. Founded by Given Arori Arori. All rights reserved.
+          </p>
+          <div className="flex items-center space-x-4">
+            <span className="text-[10px] font-mono uppercase text-gold">Nairobi / Global AI Architecture</span>
+            <a href="mailto:givenarori77@gmail.com" className="hover:text-gold transition-colors">givenarori77@gmail.com</a>
+          </div>
         </div>
-        <p className="text-gray-600 text-xs">
-          &copy; {new Date().getFullYear()} Arori.AI. All rights reserved.
-        </p>
       </div>
     </footer>
   );

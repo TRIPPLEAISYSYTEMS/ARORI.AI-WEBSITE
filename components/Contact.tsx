@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, CheckCircle, ChevronRight, Send, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle, Send, Loader2, Sparkles } from 'lucide-react';
 import { ContactFormData } from '../types';
 
 const Contact: React.FC = () => {
@@ -12,6 +12,7 @@ const Contact: React.FC = () => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -24,37 +25,32 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 1. Format the email body content cleanly
     const emailBody = `
-Hi Arori.AI Team,
+Hi Given Arori & the TRIPPLE AI SYSTEMS Team,
 
-You have received a new discovery call request from the website.
+I would like to schedule an enterprise discovery call to discuss our AI automation goals.
 
 --- Client Details ---
 Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone || 'Not provided'}
-Business Type: ${formData.business || 'Not specified'}
+Business Vertical: ${formData.business || 'Not specified'}
 
---- Message ---
+--- Project Scope & Goals ---
 ${formData.message}
 
 ----------------------
-Sent via Arori.AI Contact Form
+Sent via TRIPPLE AI SYSTEMS Architecture Portal
 `.trim();
 
-    // 2. Encode the parameters to ensure the mailto link works correctly with special characters
-    const subject = encodeURIComponent(`Discovery Call Request from ${formData.name}`);
+    const subject = encodeURIComponent(`Enterprise Discovery Call: ${formData.name} (${formData.business || 'New Lead'})`);
     const body = encodeURIComponent(emailBody);
+    const mailtoLink = `mailto:givenarori77@gmail.com?subject=${subject}&body=${body}`;
 
-    // 3. Construct the mailto link
-    const mailtoLink = `mailto:arori.ai@gmail.com?subject=${subject}&body=${body}`;
-
-    // 4. Simulate a brief loading state for better UX before opening the client
     setTimeout(() => {
       window.location.href = mailtoLink;
-      
-      // Reset form and state
+      setIsSubmitting(false);
+      setSubmitted(true);
       setFormData({
         name: '',
         email: '',
@@ -62,165 +58,216 @@ Sent via Arori.AI Contact Form
         business: '',
         message: ''
       });
-      setIsSubmitting(false);
-    }, 800);
+    }, 700);
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-slate-900/50 backdrop-blur-sm relative z-10 border-t border-cyan-900/30">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-4">Ready to Unlock Hidden Potential?</h2>
-        <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-          The companies winning in today's market aren't working harder—they're working smarter with AI automation.
-        </p>
+    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10" aria-label="Contact Section">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="eyebrow-badge mb-3">08 / INITIATE ENGAGEMENT</div>
+          <h2 className="text-3xl md:text-5xl font-bold font-heading text-champagne mb-4">
+            Ready to Build Your <span className="gold-gradient-text">Autonomous Future</span>?
+          </h2>
+          <p className="text-warm-gray text-base md:text-lg leading-relaxed">
+            Leading enterprises do not wait for the future; they automate today. Schedule a private discovery session with our founding architecture team.
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-12 bg-slate-800/30 p-8 rounded-2xl border border-cyan-500/10 shadow-2xl">
-          {/* Contact Info Column */}
-          <div>
-            <h3 className="text-2xl font-bold mb-8 text-white">Contact Information</h3>
+        {/* Contact Container with Modular Bento Glass Tiles */}
+        <div className="grid lg:grid-cols-12 gap-8">
+          
+          {/* Tile 1: Direct Contact & Enterprise Guarantees (5 Cols) */}
+          <div className="lg:col-span-5 glass-panel-elevated rounded-3xl p-8 sm:p-9 border border-[oklch(0.8_0.12_82/25%)] gold-glow space-y-7 flex flex-col justify-between">
+            <div>
+              <span className="text-xs uppercase font-mono tracking-wider text-gold font-semibold">Direct Communication Channels</span>
+              <h3 className="font-heading font-bold text-2xl text-champagne mt-1 mb-3">Direct Executive Channels</h3>
+              <p className="text-xs sm:text-sm text-warm-gray leading-relaxed mb-6">
+                Connect directly with our engineering lab for technical inquiries, enterprise RFPs, or strategic partnership evaluation.
+              </p>
 
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-cyan-900/30 rounded-lg flex items-center justify-center shrink-0 border border-cyan-500/20">
-                    <Mail className="w-5 h-5 text-cyan-400" />
-                </div>
-                <div>
-                  <p className="font-semibold text-white">Email</p>
-                  <a href="mailto:arori.ai@gmail.com" className="text-cyan-400 hover:text-cyan-300 transition">arori.ai@gmail.com</a>
-                </div>
-              </div>
+              <div className="space-y-4">
+                <a 
+                  href="mailto:givenarori77@gmail.com" 
+                  className="glass-panel p-4 rounded-2xl flex items-center space-x-4 border border-[oklch(0.8_0.12_82/20%)] hover:border-gold transition-colors group"
+                >
+                  <div className="glass-icon w-11 h-11 rounded-2xl flex items-center justify-center text-gold shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-warm-gray uppercase tracking-wider block font-mono">Principal Email</span>
+                    <span className="text-sm font-semibold text-champagne group-hover:text-gold transition-colors">
+                      givenarori77@gmail.com
+                    </span>
+                  </div>
+                </a>
 
-              <div className="flex items-start space-x-4">
-                 <div className="w-10 h-10 bg-cyan-900/30 rounded-lg flex items-center justify-center shrink-0 border border-cyan-500/20">
-                    <Phone className="w-5 h-5 text-cyan-400" />
-                 </div>
-                <div>
-                  <p className="font-semibold text-white">Phone</p>
-                  <a href="tel:+254792767922" className="text-gray-400 hover:text-cyan-400 transition">+254 792 767 922</a>
-                </div>
-              </div>
+                <a 
+                  href="tel:+254792767922" 
+                  className="glass-panel p-4 rounded-2xl flex items-center space-x-4 border border-[oklch(0.8_0.12_82/20%)] hover:border-gold transition-colors group"
+                >
+                  <div className="glass-icon w-11 h-11 rounded-2xl flex items-center justify-center text-gold shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-warm-gray uppercase tracking-wider block font-mono">Executive Direct Line</span>
+                    <span className="text-sm font-semibold text-champagne group-hover:text-gold transition-colors">
+                      +254 792 767 922
+                    </span>
+                  </div>
+                </a>
 
-              <div className="flex items-start space-x-4">
-                 <div className="w-10 h-10 bg-cyan-900/30 rounded-lg flex items-center justify-center shrink-0 border border-cyan-500/20">
-                    <MapPin className="w-5 h-5 text-cyan-400" />
-                 </div>
-                <div>
-                  <p className="font-semibold text-white">Location</p>
-                  <p className="text-gray-400">Serving businesses globally</p>
+                <div className="glass-panel p-4 rounded-2xl flex items-center space-x-4 border border-[oklch(0.8_0.12_82/20%)]">
+                  <div className="glass-icon w-11 h-11 rounded-2xl flex items-center justify-center text-gold shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-warm-gray uppercase tracking-wider block font-mono">Global Headquarters</span>
+                    <span className="text-sm font-semibold text-champagne">
+                      Nairobi, Kenya • Worldwide Operations
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-10 p-6 bg-gradient-to-br from-slate-800 to-slate-900 border border-cyan-500/20 rounded-xl shadow-lg">
-              <h4 className="font-bold mb-4 text-cyan-400">Why Choose Arori.AI?</h4>
-              <ul className="space-y-3 text-gray-300 text-sm">
+            {/* Why Choose TRIPPLE AI Sub-Tile */}
+            <div className="p-5 rounded-2xl glass-panel border border-[oklch(0.8_0.12_82/20%)] space-y-3">
+              <div className="flex items-center space-x-2 text-xs font-semibold text-gold uppercase tracking-wider font-mono">
+                <Sparkles className="w-4 h-4" />
+                <span>The TRIPPLE AI Standard</span>
+              </div>
+              <ul className="space-y-2 text-xs text-warm-gray">
                 {[
-                    "Custom solutions tailored to your needs",
-                    "Transparent pricing with clear ROI",
-                    "Ongoing support and optimization",
-                    "Secure, compliant enterprise architecture"
-                ].map((item, i) => (
-                    <li key={i} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-cyan-500 mr-2 mt-0.5 flex-shrink-0" />
+                  "100% Client-Owned Intellectual Property",
+                  "Fixed-Price Milestones with Guaranteed ROI",
+                  "SOC-2 Compliant Zero-Leak Sandboxing",
+                  "Dedicated 24/7 Monitored Self-Healing Agents"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-center space-x-2">
+                    <CheckCircle className="w-3.5 h-3.5 text-gold shrink-0" />
                     <span>{item}</span>
-                    </li>
+                  </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* Form Column */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Tile 2: Interactive Consultation Booking Form (7 Cols) */}
+          <div className="lg:col-span-7 glass-panel-elevated rounded-3xl p-8 sm:p-9 border border-[oklch(0.8_0.12_82/25%)] gold-glow space-y-6">
             <div>
-              <label className="block text-sm font-semibold mb-2 text-gray-300">Name</label>
-              <input
-                type="text"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-slate-900/80 border border-cyan-500/20 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white placeholder-gray-600 transition"
-                placeholder="John Doe"
-              />
+              <h3 className="font-heading font-bold text-2xl text-champagne">Book Discovery Consultation</h3>
+              <p className="text-xs sm:text-sm text-warm-gray mt-1">
+                Fill in your details to initiate a direct pre-configured email dispatch to Given Arori.
+              </p>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-2 text-gray-300">Email</label>
-              <input
-                type="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-slate-900/80 border border-cyan-500/20 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white placeholder-gray-600 transition"
-                placeholder="john@company.com"
-              />
-            </div>
+            {submitted && (
+              <div className="p-4 rounded-xl bg-[oklch(0.8_0.14_82/10%)] border border-gold text-gold text-xs font-semibold flex items-center space-x-2">
+                <CheckCircle className="w-4 h-4" />
+                <span>Email client invoked successfully! We will respond within 24 hours.</span>
+              </div>
+            )}
 
-            <div className="grid grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                <label className="block text-sm font-semibold mb-2 text-gray-300">Phone</label>
-                <input
+                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
+                    Your Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="e.g. Marcus Vance"
+                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
+                    Corporate Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="marcus@company.com"
+                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
+                    Phone / WhatsApp
+                  </label>
+                  <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-slate-900/80 border border-cyan-500/20 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white placeholder-gray-600 transition"
                     placeholder="+1 (555) 000-0000"
-                />
+                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
+                  />
                 </div>
 
                 <div>
-                <label className="block text-sm font-semibold mb-2 text-gray-300">Business Type</label>
-                <input
+                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
+                    Business Vertical
+                  </label>
+                  <input
                     type="text"
                     name="business"
                     value={formData.business}
                     onChange={handleInputChange}
-                    placeholder="e.g. SaaS, Retail"
-                    className="w-full px-4 py-3 bg-slate-900/80 border border-cyan-500/20 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white placeholder-gray-600 transition"
-                />
+                    placeholder="e.g. FinTech / SaaS / Logistics"
+                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
+                  />
                 </div>
-            </div>
+              </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-2 text-gray-300">Message</label>
-              <textarea
-                name="message"
-                required
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={4}
-                className="w-full px-4 py-3 bg-slate-900/80 border border-cyan-500/20 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white placeholder-gray-600 transition resize-none"
-                placeholder="Tell us about your automation goals..."
-              ></textarea>
-            </div>
+              <div>
+                <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
+                  Operational Bottleneck or Automation Goals *
+                </label>
+                <textarea
+                  name="message"
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Describe your current manual bottlenecks, tools in use (CRM, ERP, DB), and desired outcomes..."
+                  className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all resize-none"
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full px-8 py-4 rounded-lg font-bold text-white transition-all duration-300 flex items-center justify-center space-x-2 group ${
-                isSubmitting 
-                  ? 'bg-slate-700 cursor-wait' 
-                  : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:shadow-lg hover:shadow-cyan-500/50 hover:from-cyan-400 hover:to-blue-500'
-              }`}
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Opening Email Client...</span>
-                </>
-              ) : (
-                <>
-                  <span>Send Message</span>
-                  <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </>
-              )}
-            </button>
-            <p className="text-center text-xs text-gray-500 mt-2">
-                This will open your default email client with your message pre-filled.
-            </p>
-          </form>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-[oklch(0.88_0.12_85)] via-[oklch(0.8_0.14_82)] to-[oklch(0.72_0.16_80)] text-black shadow-lg shadow-[oklch(0.8_0.14_82/25%)] hover:shadow-[oklch(0.8_0.14_82/45%)] transition-all duration-300 flex items-center justify-center space-x-2 group disabled:opacity-50"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Opening Secure Dispatch Client...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Submit Discovery Request</span>
+                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+
         </div>
       </div>
     </section>

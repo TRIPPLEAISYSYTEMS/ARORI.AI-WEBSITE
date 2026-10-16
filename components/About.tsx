@@ -1,101 +1,156 @@
 import React from 'react';
-import { Globe, Target, Rocket, Calendar } from 'lucide-react';
+import { Globe, Target, Rocket, Shield, Calendar, Cpu } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-20 px-4 relative z-10 bg-slate-900/30 backdrop-blur-sm">
+    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10" aria-label="About TRIPPLE AI SYSTEMS">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          
-          {/* Text Content */}
-          <div className="space-y-6">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium">
-              <Rocket className="w-4 h-4" />
-              <span>Est. December 1st, 2025</span>
-            </div>
-            
-            <h2 className="text-3xl md:text-5xl font-bold text-white">
-              Architecting the Future of <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Global Automation</span>
-            </h2>
-            
-            <p className="text-gray-400 text-lg leading-relaxed">
-              Founded by <strong className="text-white">Given Arori Arori</strong>, Arori.AI was born from a singular vision: to bridge the gap between complex artificial intelligence capability and practical, day-to-day business utility.
-            </p>
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="eyebrow-badge mb-3">01 / ABOUT TRIPPLE AI</div>
+          <h2 className="text-3xl md:text-5xl font-bold font-heading text-champagne mb-4">
+            Architecting <span className="gold-gradient-text">Sovereign Intelligence</span>
+          </h2>
+          <p className="text-warm-gray text-base md:text-lg leading-relaxed">
+            Founded by Given Arori Arori, TRIPPLE AI SYSTEMS builds resilient, self-governing multi-agent architectures designed to turn operational friction into automated velocity.
+          </p>
+        </div>
 
-            <div className="space-y-4 pt-4">
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 border border-cyan-500/20">
-                  <Target className="w-6 h-6 text-cyan-400" />
+        {/* Modular Bento Glass Tiles Grid */}
+        <div className="grid md:grid-cols-12 gap-6">
+          
+          {/* Tile 1: Core Mission (7-Col Glass Tile) */}
+          <div className="md:col-span-7 glass-panel-elevated rounded-3xl p-8 sm:p-10 border border-[oklch(0.8_0.12_82/25%)] flex flex-col justify-between">
+            <div>
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full glass-pill border border-[oklch(0.8_0.12_82/30%)] text-gold text-xs font-semibold mb-6">
+                <Target className="w-3.5 h-3.5" />
+                <span>The Sovereign Directive</span>
+              </div>
+              
+              <h3 className="text-2xl sm:text-3xl font-bold font-heading text-champagne mb-4 leading-snug">
+                Bridging Complex Artificial Intelligence with Real Enterprise Utility
+              </h3>
+
+              <p className="text-warm-gray text-sm sm:text-base leading-relaxed mb-6">
+                Most agencies assemble fragile wrappers that fail under load. We engineer sovereign multi-agent swarms integrated directly into core company ERPs, relational databases, and customer communication pipelines.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4 pt-6 border-t border-[oklch(0.8_0.12_82/15%)]">
+              <div className="flex items-center space-x-3.5">
+                <div className="glass-icon w-11 h-11 rounded-2xl flex items-center justify-center text-gold shrink-0">
+                  <Cpu className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg">Our Operations</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    We specialize in constructing bespoke AI infrastructures. Unlike generic wrappers, we engineer autonomous agent workforces that deeply integrate with your legacy systems, ensuring data privacy and operational continuity while eliminating redundancy.
-                  </p>
+                  <h4 className="text-xs font-bold text-champagne">Zero Wrappers</h4>
+                  <p className="text-[11px] text-warm-gray">Bespoke Python &amp; Gemini Agents</p>
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 border border-cyan-500/20">
-                  <Globe className="w-6 h-6 text-cyan-400" />
+              <div className="flex items-center space-x-3.5">
+                <div className="glass-icon w-11 h-11 rounded-2xl flex items-center justify-center text-gold shrink-0">
+                  <Shield className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg">Global Scaling Goals</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Our ambition is borderless. We are actively scaling our operations to serve 10,000 enterprise partners across 5 continents by 2030. We aim to democratize access to elite-level automation, creating a global network of hyper-efficient, data-driven organizations.
-                  </p>
+                  <h4 className="text-xs font-bold text-champagne">100% Sovereign IP</h4>
+                  <p className="text-[11px] text-warm-gray">Complete Client Ownership</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Visual/Stats Column */}
-          <div className="relative">
-            {/* Abstract Decorative Elements */}
-            <div className="absolute -top-10 -right-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl"></div>
-            
-            <div className="relative bg-slate-800/50 border border-cyan-500/20 rounded-2xl p-8 backdrop-blur-xl shadow-2xl">
-              <div className="flex items-center space-x-4 mb-8">
-                <div className="h-16 w-16 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl font-bold text-white shadow-lg">
-                  GA
+          {/* Tile 2: Founder Card (5-Col Glass Tile) */}
+          <div className="md:col-span-5 glass-panel rounded-3xl p-8 border border-[oklch(0.8_0.12_82/25%)] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold to-[oklch(0.68_0.16_78)] p-[2px] shrink-0 shadow-lg shadow-[oklch(0.8_0.14_82/20%)]">
+                  <div className="w-full h-full rounded-2xl bg-[oklch(0.14_0.015_70)] flex items-center justify-center font-heading font-extrabold text-xl text-gold">
+                    GA
+                  </div>
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-white">Given Arori Arori</h4>
-                  <p className="text-cyan-400 text-sm">Founder & CEO</p>
+                  <h3 className="font-heading font-bold text-xl text-champagne">Given Arori Arori</h3>
+                  <p className="text-gold text-xs font-mono uppercase tracking-wider mt-0.5 font-semibold">Founder &amp; CEO</p>
+                  <span className="text-[11px] text-warm-gray">TRIPPLE AI SYSTEMS</span>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="bg-slate-900/50 rounded-lg p-4 border border-cyan-500/10">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-400 text-sm">Global Reach Goal</span>
-                    <span className="text-cyan-400 font-bold text-sm">Target: 2030</span>
-                  </div>
-                  <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-                    <div className="bg-gradient-to-r from-cyan-400 to-blue-600 h-full w-3/4 animate-pulse"></div>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-2">Scaling operations across N. America, Europe, Africa & Asia.</p>
-                </div>
+              <p className="text-warm-gray text-xs sm:text-sm leading-relaxed mb-6 italic">
+                "Our commitment is simple: eliminate organizational bottlenecks, accelerate operational velocity, and empower human ingenuity through transparent, verifiable artificial intelligence."
+              </p>
+            </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-900/50 rounded-lg p-4 border border-cyan-500/10 text-center">
-                    <Calendar className="w-6 h-6 text-cyan-400 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-white">2025</div>
-                    <div className="text-xs text-gray-400">Established</div>
-                  </div>
-                  <div className="bg-slate-900/50 rounded-lg p-4 border border-cyan-500/10 text-center">
-                    <Rocket className="w-6 h-6 text-cyan-400 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-white">100+</div>
-                    <div className="text-xs text-gray-400">Agents Deployed</div>
-                  </div>
-                </div>
+            <div className="p-4 rounded-2xl glass-panel border border-[oklch(0.8_0.12_82/20%)] flex items-center justify-between text-xs">
+              <span className="text-warm-gray flex items-center gap-1.5 font-mono">
+                <Calendar className="w-4 h-4 text-gold" />
+                Est. Dec 1st, 2025
+              </span>
+              <span className="text-gold font-bold font-mono">NAIROBI HQ</span>
+            </div>
+          </div>
+
+          {/* Tile 3: Global Scaling Goal (6-Col Glass Tile) */}
+          <div className="md:col-span-6 glass-panel rounded-3xl p-7 sm:p-8 border border-[oklch(0.8_0.12_82/20%)] hover:border-gold transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <div className="glass-icon w-12 h-12 rounded-2xl flex items-center justify-center text-gold">
+                <Globe className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-mono text-gold px-3 py-1 rounded-full glass-pill border border-[oklch(0.8_0.12_82/25%)]">
+                TARGET: 2030
+              </span>
+            </div>
+
+            <h4 className="font-heading font-bold text-xl text-champagne mb-2">
+              10,000 Enterprise Partners
+            </h4>
+            <p className="text-xs sm:text-sm text-warm-gray leading-relaxed mb-6">
+              Scaling our autonomous agent pipelines across 5 continents: North America, Europe, Africa, Asia, and Latin America.
+            </p>
+
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs font-mono text-warm-gray">
+                <span>Operational Footprint</span>
+                <span className="text-gold font-bold">5 Continents Active</span>
+              </div>
+              <div className="w-full bg-[oklch(0.14_0.015_70)] h-2 rounded-full overflow-hidden border border-[oklch(0.8_0.12_82/15%)]">
+                <div className="bg-gradient-to-r from-gold to-[oklch(0.92_0.08_85)] h-full w-3/4" />
+              </div>
+            </div>
+          </div>
+
+          {/* Tile 4: Agent Deployments & Track Record (6-Col Glass Tile) */}
+          <div className="md:col-span-6 glass-panel rounded-3xl p-7 sm:p-8 border border-[oklch(0.8_0.12_82/20%)] hover:border-gold transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <div className="glass-icon w-12 h-12 rounded-2xl flex items-center justify-center text-gold">
+                <Rocket className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-mono text-gold px-3 py-1 rounded-full glass-pill border border-[oklch(0.8_0.12_82/25%)]">
+                PRODUCTION VERIFIED
+              </span>
+            </div>
+
+            <h4 className="font-heading font-bold text-xl text-champagne mb-2">
+              100+ Autonomous Agents Live
+            </h4>
+            <p className="text-xs sm:text-sm text-warm-gray leading-relaxed mb-6">
+              Continuously parsing transactions, resolving inquiries, and synchronizing data streams with 99.98% deterministic precision.
+            </p>
+
+            <div className="grid grid-cols-2 gap-3 pt-1">
+              <div className="p-3.5 rounded-2xl glass-panel border border-[oklch(0.8_0.12_82/15%)]">
+                <span className="text-lg font-bold font-heading text-champagne block">4.2M+</span>
+                <span className="text-[10px] text-warm-gray uppercase font-mono">Tasks Automated</span>
+              </div>
+              <div className="p-3.5 rounded-2xl glass-panel border border-[oklch(0.8_0.12_82/15%)]">
+                <span className="text-lg font-bold font-heading text-gold block">70%</span>
+                <span className="text-[10px] text-warm-gray uppercase font-mono">Avg Time Reclaimed</span>
               </div>
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );

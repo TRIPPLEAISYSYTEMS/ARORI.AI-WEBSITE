@@ -29,7 +29,7 @@ const LogoWallpaper: React.FC = () => {
          <img 
             src="logo.png" 
             alt="" 
-            className="w-[120vmax] h-[120vmax] max-w-none object-contain animate-[spin_120s_linear_infinite]" 
+            className="w-[120vmax] h-[120vmax] max-w-none object-contain animate-[spin_180s_linear_infinite]" 
          />
       </div>
     </div>

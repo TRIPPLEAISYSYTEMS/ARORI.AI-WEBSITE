@@ -8,30 +8,29 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ParticleBackground from './components/ParticleBackground';
+import ConstellationSystem from './components/ConstellationSystem';
 import LogoWallpaper from './components/LogoWallpaper';
 import SocialFloatingDock from './components/SocialFloatingDock';
 import ContactPage from './components/ContactPage';
 import ChatBot from './components/ChatBot';
+import './index.css';
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState('home');
+  const [currentView, setCurrentView] = useState<'home' | 'contact'>('home');
 
   useEffect(() => {
-    // Simple hash-based router
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#contact') {
+      if (hash === '#contact-page') {
         setCurrentView('contact');
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setCurrentView('home');
-        // If there's a specific section hash (e.g. #services), scroll to it after rendering
         if (hash && hash !== '#home') {
           setTimeout(() => {
             const element = document.getElementById(hash.substring(1));
             if (element) {
-              const headerOffset = 64;
+              const headerOffset = 90;
               const elementPosition = element.getBoundingClientRect().top;
               const offsetPosition = elementPosition + window.scrollY - headerOffset;
               window.scrollTo({
@@ -41,25 +40,23 @@ const App: React.FC = () => {
             }
           }, 100);
         } else if (hash === '#home' || !hash) {
-          window.scrollTo(0, 0);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
     };
 
-    // Initialize on mount
     handleHashChange();
-
-    // Listen for changes
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-[oklch(0.13_0.012_70)] text-[oklch(0.95_0.02_85)] relative selection:bg-gold selection:text-black font-body overflow-x-hidden sparkling-bg-aura">
+      {/* Three.js Interactive Constellation Particle System */}
+      <ConstellationSystem />
       <LogoWallpaper />
-      <ParticleBackground />
       
-      <div className="relative">
+      <div className="relative z-10">
         <Navbar currentView={currentView} />
         
         <main>
@@ -71,21 +68,14 @@ const App: React.FC = () => {
               <Process />
               <Testimonials />
               <FAQ />
-              <div className="pb-20">
-                {/* 
-                  Optional: render the contact form here too, or just a CTA. 
-                  We'll keep the original Contact component as a bottom-of-page CTA 
-                  for the Home view, but modify the Navbar "Contact" to go to the new page.
-                */}
-                <Contact />
-              </div>
+              <Contact />
             </>
           ) : (
             <ContactPage />
           )}
         </main>
         
-        <Footer />
+        <Footer currentView={currentView} />
         <SocialFloatingDock currentView={currentView} />
         <ChatBot />
       </div>

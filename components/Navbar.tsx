@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Bot } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { NavLink } from '../types';
 
 const navLinks: NavLink[] = [
-  { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Process', href: '#process' },
@@ -20,7 +19,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
-  // Handle scroll spy to update active section (only relevant on Home view)
   useEffect(() => {
     if (currentView !== 'home') {
       setActiveSection('contact');
@@ -28,13 +26,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
     }
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset for header detection
+      const scrollPosition = window.scrollY + 140;
 
       for (const link of navLinks) {
-        // Skip 'Contact' for scroll spy on home page as it's a separate page now, 
-        // but we might have a contact section at bottom. 
         if (link.href === '#contact') continue;
-
         const sectionId = link.href.substring(1);
         const element = document.getElementById(sectionId);
         
@@ -48,34 +43,30 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentView]);
 
-  // Smooth scroll handler
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
-    
-    // If it's the contact link, we just let the default anchor behavior happen
-    // because #contact will trigger the view switch in App.tsx
-    if (href === '#contact') {
-      return; 
-    }
 
-    // If we are on the contact page and clicking a home link (like #services),
-    // also let default behavior happen. The hash change will trigger App.tsx to 
-    // switch to Home view and then scroll.
     if (currentView === 'contact') {
+      window.location.hash = href;
       return;
     }
 
-    // If we are on Home view, use smooth scrolling
     e.preventDefault();
     const targetId = href.substring(1);
+    if (targetId === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.pushState(null, '', '#');
+      setActiveSection('home');
+      return;
+    }
+
     const element = document.getElementById(targetId);
-    
     if (element) {
-      const headerOffset = 64; // Height of navbar
+      const headerOffset = 90;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -83,81 +74,98 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
         top: offsetPosition,
         behavior: 'smooth'
       });
-      
-      // Update hash manually without jumping
       window.history.pushState(null, '', href);
       setActiveSection(targetId);
     }
   };
 
   return (
-    <nav className="fixed w-full bg-slate-950/95 backdrop-blur-sm border-b border-cyan-500/20 z-50 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <a 
-            href="#home"
-            className="flex items-center space-x-3 cursor-pointer group" 
-            onClick={(e) => handleNavigation(e, '#home')}
+    <header className="fixed top-4 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl">
+      <nav 
+        className="glass-pill rounded-full px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between transition-all duration-300 relative border border-[oklch(0.8_0.12_82/25%)] shadow-2xl"
+        aria-label="Main Navigation"
+      >
+        {/* Brand Logo & Name: Original logo.png retained at top */}
+        <a 
+          href="#home"
+          className="flex items-center space-x-2.5 group cursor-pointer" 
+          onClick={(e) => handleNavigation(e, '#home')}
+        >
+          <div className="w-8 h-8 rounded-full bg-[oklch(0.14_0.015_70)] border border-[oklch(0.8_0.12_82/30%)] flex items-center justify-center p-1 shadow-md shadow-[oklch(0.8_0.14_82/20%)] group-hover:scale-105 transition-transform overflow-hidden">
+            <img 
+              src="logo.png" 
+              alt="TRIPPLE AI SYSTEMS Logo" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <span className="font-heading font-bold text-sm tracking-tight text-champagne hidden xs:inline-block">
+            TRIPPLE <span className="gold-gradient-text">AI</span> <span className="text-[10px] font-mono text-warm-gray ml-0.5">SYSTEMS</span>
+          </span>
+        </a>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          {navLinks.map((link) => {
+            const sectionId = link.href.substring(1);
+            const isActive = currentView === 'contact' 
+              ? link.href === '#contact' 
+              : activeSection === sectionId;
+
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavigation(e, link.href)}
+                className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-200 ${
+                  isActive
+                    ? 'text-black bg-gold font-bold shadow-md shadow-[oklch(0.8_0.14_82/25%)]'
+                    : 'text-warm-gray hover:text-champagne hover:bg-[oklch(0.8_0.14_82/8%)]'
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Action Button & Mobile Menu Toggle */}
+        <div className="flex items-center space-x-2">
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex items-center space-x-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-[oklch(0.88_0.12_85)] via-[oklch(0.8_0.14_82)] to-[oklch(0.72_0.16_80)] text-black hover:shadow-lg hover:shadow-[oklch(0.8_0.14_82/30%)] transition-all transform hover:scale-105"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-shadow">
-              <Bot className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-xl font-bold text-white">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Arori.AI</span>
-            </span>
+            <span>Book Call</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navLinks.map((link) => {
-              const isActive = currentView === 'contact' 
-                ? link.href === '#contact' 
-                : activeSection === link.href.substring(1);
-
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleNavigation(e, link.href)}
-                  className={`text-sm font-medium transition-colors duration-300 ${
-                    isActive
-                      ? 'text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]'
-                      : 'text-gray-300 hover:text-cyan-400'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </div>
-
-          {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-300 hover:text-white transition-colors"
+            className="md:hidden p-2 rounded-full text-warm-gray hover:text-champagne hover:bg-[oklch(0.8_0.14_82/10%)] transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Navigation Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-900 border-t border-cyan-500/20 absolute w-full left-0 animate-in slide-in-from-top-5 duration-200 shadow-2xl">
-          <div className="px-4 py-4 space-y-3">
+        <div className="md:hidden mt-2 glass-panel-elevated rounded-2xl p-4 border border-[oklch(0.8_0.12_82/30%)] shadow-2xl animate-in fade-in duration-200">
+          <div className="flex flex-col space-y-1">
             {navLinks.map((link) => {
-               const isActive = currentView === 'contact' 
+              const sectionId = link.href.substring(1);
+              const isActive = currentView === 'contact' 
                 ? link.href === '#contact' 
-                : activeSection === link.href.substring(1);
+                : activeSection === sectionId;
                 
               return (
                 <a
                   key={link.label}
                   href={link.href}
-                  className={`block py-3 text-base font-medium rounded-lg px-4 ${
+                  className={`text-sm font-medium px-4 py-2.5 rounded-xl transition-all ${
                     isActive
-                      ? 'bg-cyan-500/10 text-cyan-400 border-l-2 border-cyan-500'
-                      : 'text-gray-300 hover:text-cyan-400 hover:bg-slate-800'
+                      ? 'bg-gold text-black font-bold'
+                      : 'text-warm-gray hover:text-champagne hover:bg-[oklch(0.8_0.14_82/10%)]'
                   }`}
                   onClick={(e) => handleNavigation(e, link.href)}
                 >
@@ -165,10 +173,20 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
                 </a>
               );
             })}
+            <div className="pt-2 border-t border-[oklch(0.8_0.12_82/15%)] mt-2">
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl text-xs font-bold bg-gold text-black"
+              >
+                <span>Book a Discovery Call</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 
