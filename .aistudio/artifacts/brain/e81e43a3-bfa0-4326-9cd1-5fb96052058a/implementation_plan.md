@@ -1,54 +1,55 @@
-# Full Codebase Audit & Netlify Build Remediation
+# Founder Portfolio Integration Plan: Given Arori
 
-A comprehensive, file-by-file audit and production stabilization plan for TRIPPLE AI SYSTEMS, resolving the Netlify HTML parsing error (`eof-in-tag`), standardizing the build toolchain on Node 20 with `npm run build`, and hardening TypeScript, CSS, and component integrity across the portal.
+Integrate Given Arori's personal portfolio as a dedicated page on the TRIPPLE AI SYSTEMS site under `/ #founder`, seamlessly accessible from both the top navigation bar and the About section, preserving the visual identity, interactive starfield, showcase projects, and technology marquee from the provided portfolio package.
 
 ### User Review & Critical Decisions
 
 > [!IMPORTANT]
 > The following operational choices were confirmed during Phase 1 clarification:
-> - **Audit Scope**: Full audit covering build integrity, TypeScript types, and HTML/DOM validation.
-> - **Target Build Runner**: Standard Node.js 20 with `npm run build` on Netlify, avoiding unsupported runtime mismatches.
+> - **Navigation Positioning**: Accessible **both in the top navigation bar** and through a dedicated feature card in the **About section**.
+> - **Visual Style**: Faithful implementation of the **original portfolio design from the attachment** (Sora & Manrope typography, interactive starfield, Oculus project showcase, glassmorphic profile portrait, 100-technology marquee tracks, and direct WhatsApp contact).
 
-- **Confirmed Decision 1**: Standardize `netlify.toml` with `NODE_VERSION = "20"` and `command = "npm run build"` to ensure reproducible deployment parity across Netlify and local environments.
-- **Confirmed Decision 2**: Ensure `index.html` structure (notably `#resultBox` and `#statusContainer`) contains pristine, strictly closed quotes and tags so `vite:build-html` and `parse5` never hit `eof-in-tag`.
-- **Confirmed Decision 3**: Retain the 30% speed reduction on Three.js constellation particles and official executive email `givenarori77@gmail.com`.
+- **Confirmed Decision 1**: Add `#founder` route to `App.tsx` state machine (`'home' | 'contact' | 'founder'`), with smooth scroll-to-top and back navigation to the TRIPPLE AI SYSTEMS homepage.
+- **Confirmed Decision 2**: Place the high-resolution portrait asset (`given-arori-ai-glass.jpg`) into `public/assets/given-arori-ai-glass.jpg` and integrate `FounderPortfolio.tsx` with all content rows from `content.ts`.
+- **Confirmed Decision 3**: Add a "Founder Portfolio" link in `Navbar.tsx` and an architectural spotlight card in `About.tsx` with a direct call to action to explore the founder's credentials.
 
 ---
 
 ### 1. Overview & Core Concept
 
-- **What It Delivers**: A verified, zero-defect codebase ready for continuous deployment on Netlify and AI Studio. All configuration files (`netlify.toml`, `.nvmrc`, `package.json`, `vite.config.ts`, `tsconfig.json`) and application components (`index.html`, `App.tsx`, `components/*`) are verified line by line.
-- **Target Audience**: Enterprise executives, technology directors, and prospect clients seeking custom multi-agent automation systems.
-- **Core Value**: 100% build reliability without truncation hazards, sub-second client-side hydration, and clean architectural separation.
+- **What It Delivers**: A dedicated, rich portfolio page for Given Arori (Founder of TRIPPLE AI SYSTEMS) highlighting his mathematics & physics background at Kenyatta University, 8 core service disciplines, hands-on experience, the featured *Oculus* project, 100+ technologies across 4 animated marquee streams, and direct WhatsApp / LinkedIn communication.
+- **Target Audience**: Enterprise clients, prospective partners, and investors seeking deep technical proof of the founder's hands-on engineering caliber and systems architecture philosophy.
+- **Key Value**: Bridges agency corporate credibility with personal founder authority, elevating client trust and inbound conversion.
 
 ---
 
 ### 2. User Experience & Visual Design
 
 - **Key User Flows**:
-  - **Landing View (`#home`)**: Radiant gold brand emblem in hero, clamp-scaled typographic headline, Three.js constellation system with interactive shockwave and slow starry drift, bento-grid services showcase, engineering process timeline, quantified case studies, and accordion FAQ.
-  - **Lead Capture & Contact**: Interactive consultation booking form with validated fields (`name`, `email`, `phone`, `business`, `message`) generating direct mailto dispatches to `givenarori77@gmail.com` with feedback confirmation.
-  - **Dedicated Contact View (`#contact-page`)**: Direct access view for direct channels (WhatsApp, Instagram, TikTok, X, YouTube, executive phone).
-  - **Executive AI Concierge**: Floating glassmorphic chatbot powered by Google GenAI (`gemini-2.5-flash`) with fallback guidance.
-- **Visual Identity & Theme**:
-  - *Dominant Canvas*: Deep obsidian canvas (`oklch(0.13 0.012 70)`) accented by warm champagne typography (`oklch(0.95 0.02 85)`).
-  - *Accent Budget*: Radiant metallic gold (`oklch(0.8 0.14 82)`) strictly focused on CTAs, active pills, and glowing constellation nodes.
-  - *Typography*: Sora display font for titles paired with Manrope for high-legibility body prose.
-  - *Surfaces*: Frosted glassmorphism panels with 1px hairline borders (`oklch(0.8 0.12 82 / 22%)`) and backdrop saturation.
+  - **From Navigation**: Clicking "Founder" in the top bar or mobile drawer navigates to `#founder`, smooth-scrolling to the top and displaying the dedicated portfolio layout with a persistent "Back to TRIPPLE AI" exit control.
+  - **From About Section**: A featured "Meet the Founder & Chief Architect" glass tile in `About.tsx` invites visitors to view Given Arori's individual research, tooling stack, and Oculus project via `#founder`.
+  - **On Founder Page**:
+    - **Header**: Status pills (`AI SOLUTIONS SPECIALIST`, `AVAILABLE FOR Q2/Q3`, `NAIROBI, KENYA`).
+    - **Hero & Glass Portrait**: Bold display typography (`GIVEN ARORI`), mission statement, and glass-paneled portrait badge.
+    - **About**: Practical philosophy, Kenyatta University B.Ed Science (Math & Physics) credentials, and link to Tripple AI Systems.
+    - **8 Capabilities Bento**: Autonomous swarms, websites, apps, adverts, social media, content, AI agent management, and scalable systems.
+    - **Oculus Project Showcase**: High-impact monolithic typography card with direct WhatsApp inquiry.
+    - **100-Technology Marquee**: 4 continuous alternating tracks featuring LLMs, web frameworks, agent frameworks, and cloud infrastructure.
+    - **Direct Conversation Panel**: WhatsApp `0792 767 922` and LinkedIn connection buttons.
 
 ---
 
 ### 3. Key Product Decisions & Trade-Offs
 
-- **Decision 1: Explicit Static HTML Containers vs. Dynamic Mounting**:
-  - *Chosen Approach*: Maintain minimal, clean status placeholders in `index.html` with explicit tag closures and let React manage interactive feedback inside the root app tree.
-  - *Why*: Eliminates Vite HTML tokenizer fragility during CI/CD parsing while maintaining fast first-contentful paint.
-- **Decision 2: Node.js 20 LTS Toolchain Pinning**:
-  - *Chosen Approach*: Provide explicit `netlify.toml`, `.nvmrc`, and `"engines": { "node": ">=18.0.0" }` in `package.json`.
-  - *Why*: Netlify’s default build image or Bun detection can cause subtle parser disparities; standardizing on Node 20 with `npm run build` guarantees deterministic output.
-- **Decision 3: Three.js Constellation Speed Calibration**:
-  - *Chosen Approach*: Physics time delta locked to `0.70x` scale.
-  - *Why*: Satisfies user requirement for a 30% slower, majestic cosmic drift that preserves GPU performance and reading focus.
+- **Decision 1: Native React SPA Route vs. External Link**:
+  - *Chosen Approach*: Embed as an integrated internal view (`currentView === 'founder'`) using URL hash routing (`#founder`).
+  - *Why*: Instant transitions without page reloads, zero external deployment latency, and consistent session persistence.
+- **Decision 2: Preserving Portfolio's Dedicated StarField**:
+  - *Chosen Approach*: Render the dedicated `StarField` component within the founder page while temporarily sleeping the agency's background constellation when in founder mode to optimize GPU memory and frame rates.
+  - *Why*: Delivers 100% of the original portfolio's aesthetic intent without visual interference or dual-canvas lag.
+- **Decision 3: Seamless Dual Navigation**:
+  - *Chosen Approach*: Include both the global TRIPPLE AI navigation bar (with active state indicator for "Founder") and an internal sticky return breadcrumb.
+  - *Why*: Guarantees users can explore the founder's work and easily return to services, process, or booking without hitting browser back button friction.
 
 ---
 
@@ -56,38 +57,36 @@ A comprehensive, file-by-file audit and production stabilization plan for TRIPPL
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    index.html Entry Point                   │
-│   - Semantic Head / SEO Meta / JSON-LD / Google Fonts       │
-│   - Pristine Closed Containers (#root, #statusContainer)    │
+│                    App.tsx Routing Engine                   │
+│         currentView: 'home' | 'contact' | 'founder'         │
 └──────────────────────────────┬──────────────────────────────┘
                                │
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│                 App.tsx (Root Layout Shell)                 │
-│   - Hash-based Routing (#home vs #contact-page)             │
-│   - Global Smooth Scroll Controller & Passive Listeners     │
-└──────────────┬──────────────────────────────┬───────────────┘
-               │                              │
-       ┌───────┴────────┐             ┌───────┴────────┐
-       ▼                ▼             ▼                ▼
-┌──────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-│ Three.js     │ │ Navbar /    │ │ Main Views  │ │ ChatBot /   │
-│ Constellation│ │ Floating    │ │ (Hero, Bento│ │ Concierge   │
-│ Canvas       │ │ Social Dock │ │  Services,  │ │ Agent       │
-│ (0.70x speed)│ │             │ │  Contact)   │ │ (GenAI API) │
-└──────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
+               ┌───────────────┼───────────────┐
+               ▼               ▼               ▼
+        ┌─────────────┐ ┌─────────────┐ ┌─────────────────────┐
+        │   'home'    │ │  'contact'  │ │      'founder'      │
+        │ (Agency V1) │ │ (Contact V1)│ │  FounderPortfolio   │
+        └──────┬──────┘ └─────────────┘ └──────────┬──────────┘
+               │                                   │
+               ▼                                   ▼
+        ┌─────────────┐                    ┌───────────────┐
+        │  About.tsx  │ ── [Click CTA] ──► │  StarField    │
+        │ Founder Tile│                    │  Hero Portrait│
+        └─────────────┘                    │  Oculus Card  │
+                                           │  Tech Marquee │
+                                           │  WhatsApp CTA │
+                                           └───────────────┘
 ```
 
-#### File-by-File Audit Matrix
-| Target File | Status | Audit Findings & Remediations |
-| :--- | :--- | :--- |
-| `index.html` | Verified | Fixed `div#resultBox` and `<p>` style attributes; all tags strictly closed; zero `eof-in-tag` risks. |
-| `netlify.toml` | Verified | Configured with `NODE_VERSION = "20"`, `npm run build`, `dist` publish dir, and SPA redirects. |
-| `.nvmrc` | Verified | Pinned to `20`. |
-| `package.json` | Verified | Enforced `>=18.0.0` Node engine; scripts clean (`dev`, `build`, `lint`). |
-| `vite.config.ts` | Verified | Port 3000, React + Tailwind plugins, alias `@` configured, env definitions clean. |
-| `tsconfig.json` | Verified | ES2022 target, bundler resolution, React JSX, `noEmit: true`, path aliases aligned. |
-| `index.css` | Verified | Tailwind 4 imports, OKLCH token scales, glassmorphism filters, marquee animations valid. |
-| `App.tsx` | Verified | Robust hash router with clean event teardown; zero memory leaks. |
-| `components/Contact.tsx` | Verified | Direct dispatch to `givenarori77@gmail.com`; form state and feedback verified. |
-| `components/ConstellationSystem.tsx` | Verified | Three.js particle system calibrated at 0.70x speed multiplier; WebGL context handling intact. |
+#### File Implementation Sequence
+1. **Asset Staging**: Copy `given-arori-ai-glass.jpg` to `public/assets/given-arori-ai-glass.jpg`.
+2. **Component Creation**:
+   - Create `components/founder/content.ts` with profile, navigation, services, and 100-technology rows.
+   - Create `components/founder/StarField.tsx` with optimized Three.js canvas.
+   - Create `components/founder/FounderPortfolio.tsx` with all sections and animations.
+3. **App Integration**:
+   - Update `App.tsx` hash routing to handle `#founder`.
+   - Update `Navbar.tsx` to add "Founder" navigation item and active state.
+   - Update `About.tsx` to add the "Meet the Founder" glass spotlight card linking to `#founder`.
+   - Update `index.css` with required animation utilities (`marquee`, `tech-chip`, `oculus-mark`, `hero-visual`).
+4. **Verification**: Run `lint_applet` and `compile_applet` to confirm a 0-error build.

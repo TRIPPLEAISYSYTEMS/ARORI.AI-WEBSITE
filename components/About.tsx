@@ -61,18 +61,23 @@ const About: React.FC = () => {
           </div>
 
           {/* Tile 2: Founder Card (5-Col Glass Tile) */}
-          <div className="md:col-span-5 glass-panel rounded-3xl p-8 border border-[oklch(0.8_0.12_82/25%)] flex flex-col justify-between">
+          <div className="md:col-span-5 glass-panel-elevated rounded-3xl p-8 border border-[oklch(0.8_0.12_82/25%)] gold-glow flex flex-col justify-between">
             <div>
               <div className="flex items-center space-x-4 mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold to-[oklch(0.68_0.16_78)] p-[2px] shrink-0 shadow-lg shadow-[oklch(0.8_0.14_82/20%)]">
-                  <div className="w-full h-full rounded-2xl bg-[oklch(0.14_0.015_70)] flex items-center justify-center font-heading font-extrabold text-xl text-gold">
-                    GA
-                  </div>
+                <div className="w-16 h-16 rounded-2xl overflow-hidden border border-[oklch(0.8_0.12_82/30%)] shrink-0 shadow-lg shadow-[oklch(0.8_0.14_82/20%)] bg-[oklch(0.14_0.015_70)]">
+                  <img
+                    src="assets/given-arori-ai-glass.jpg"
+                    alt="Given Arori Arori"
+                    className="w-full h-full object-cover object-top"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/assets/given-arori-ai-glass.jpg";
+                    }}
+                  />
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-xl text-champagne">Given Arori Arori</h3>
-                  <p className="text-gold text-xs font-mono uppercase tracking-wider mt-0.5 font-semibold">Founder &amp; CEO</p>
-                  <span className="text-[11px] text-warm-gray">TRIPPLE AI SYSTEMS</span>
+                  <p className="text-gold text-xs font-mono uppercase tracking-wider mt-0.5 font-semibold">Founder &amp; Chief AI Architect</p>
+                  <span className="text-[11px] text-warm-gray">Kenyatta Univ. (Math &amp; Physics)</span>
                 </div>
               </div>
 
@@ -81,12 +86,22 @@ const About: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl glass-panel border border-[oklch(0.8_0.12_82/20%)] flex items-center justify-between text-xs">
-              <span className="text-warm-gray flex items-center gap-1.5 font-mono">
-                <Calendar className="w-4 h-4 text-gold" />
-                Est. Dec 1st, 2025
-              </span>
-              <span className="text-gold font-bold font-mono">NAIROBI HQ</span>
+            <div className="space-y-3">
+              <a
+                href="#founder"
+                className="w-full py-3.5 px-4 rounded-2xl font-bold text-xs bg-gradient-to-r from-[oklch(0.88_0.12_85)] via-[oklch(0.8_0.14_82)] to-[oklch(0.72_0.16_80)] text-black shadow-md shadow-[oklch(0.8_0.14_82/20%)] hover:shadow-lg hover:shadow-[oklch(0.8_0.14_82/35%)] hover:scale-[1.02] transition-all flex items-center justify-center space-x-2 group"
+              >
+                <span>Explore Given Arori's Portfolio</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+
+              <div className="p-3 rounded-xl glass-panel border border-[oklch(0.8_0.12_82/15%)] flex items-center justify-between text-[11px]">
+                <span className="text-warm-gray flex items-center gap-1.5 font-mono">
+                  <Calendar className="w-3.5 h-3.5 text-gold" />
+                  Est. Dec 1st, 2025
+                </span>
+                <span className="text-gold font-bold font-mono">NAIROBI HQ</span>
+              </div>
             </div>
           </div>
 

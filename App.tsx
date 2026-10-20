@@ -12,17 +12,21 @@ import ConstellationSystem from './components/ConstellationSystem';
 import LogoWallpaper from './components/LogoWallpaper';
 import SocialFloatingDock from './components/SocialFloatingDock';
 import ContactPage from './components/ContactPage';
+import FounderPortfolio from './components/founder/FounderPortfolio';
 import ChatBot from './components/ChatBot';
 import './index.css';
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<'home' | 'contact'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'contact' | 'founder'>('home');
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
       if (hash === '#contact-page') {
         setCurrentView('contact');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#founder' || hash === '#portfolio') {
+        setCurrentView('founder');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setCurrentView('home');
@@ -52,15 +56,19 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[oklch(0.13_0.012_70)] text-[oklch(0.95_0.02_85)] relative selection:bg-gold selection:text-black font-body overflow-x-hidden sparkling-bg-aura">
-      {/* Three.js Interactive Constellation Particle System */}
-      <ConstellationSystem />
-      <LogoWallpaper />
+      {/* Three.js Interactive Constellation Particle System (Active on Home/Contact) */}
+      {currentView !== 'founder' && (
+        <>
+          <ConstellationSystem />
+          <LogoWallpaper />
+        </>
+      )}
       
       <div className="relative z-10">
-        <Navbar currentView={currentView} />
+        {currentView !== 'founder' && <Navbar currentView={currentView} />}
         
         <main>
-          {currentView === 'home' ? (
+          {currentView === 'home' && (
             <>
               <Hero />
               <About />
@@ -70,13 +78,13 @@ const App: React.FC = () => {
               <FAQ />
               <Contact />
             </>
-          ) : (
-            <ContactPage />
           )}
+          {currentView === 'contact' && <ContactPage />}
+          {currentView === 'founder' && <FounderPortfolio />}
         </main>
         
-        <Footer currentView={currentView} />
-        <SocialFloatingDock currentView={currentView} />
+        {currentView !== 'founder' && <Footer currentView={currentView} />}
+        {currentView !== 'founder' && <SocialFloatingDock currentView={currentView} />}
         <ChatBot />
       </div>
     </div>

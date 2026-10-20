@@ -4,6 +4,7 @@ import { NavLink } from '../types';
 
 const navLinks: NavLink[] = [
   { label: 'About', href: '#about' },
+  { label: 'Founder', href: '#founder' },
   { label: 'Services', href: '#services' },
   { label: 'Process', href: '#process' },
   { label: 'Testimonials', href: '#testimonials' },
@@ -20,8 +21,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    if (currentView !== 'home') {
+    if (currentView === 'contact') {
       setActiveSection('contact');
+      return;
+    }
+    if (currentView === 'founder') {
+      setActiveSection('founder');
       return;
     }
 
@@ -29,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
       const scrollPosition = window.scrollY + 140;
 
       for (const link of navLinks) {
-        if (link.href === '#contact') continue;
+        if (link.href === '#contact' || link.href === '#founder') continue;
         const sectionId = link.href.substring(1);
         const element = document.getElementById(sectionId);
         
@@ -50,7 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
 
-    if (currentView === 'contact') {
+    if (href === '#founder' || href === '#contact-page' || currentView !== 'home') {
       window.location.hash = href;
       return;
     }
