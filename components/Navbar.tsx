@@ -131,10 +131,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
         {/* Action Button & Mobile Menu Toggle */}
         <div className="flex items-center space-x-2">
           <a
-            href="#contact"
+            href="https://wa.me/254792767922"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center space-x-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-[oklch(0.88_0.12_85)] via-[oklch(0.8_0.14_82)] to-[oklch(0.72_0.16_80)] text-black hover:shadow-lg hover:shadow-[oklch(0.8_0.14_82/30%)] transition-all transform hover:scale-105"
           >
-            <span>Book Call</span>
+            <span>Inquire Now</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
 
@@ -175,11 +177,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
             })}
             <div className="pt-2 border-t border-[oklch(0.8_0.12_82/15%)] mt-2">
               <a
-                href="#contact"
+                href="https://wa.me/254792767922"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl text-xs font-bold bg-gold text-black"
               >
-                <span>Book a Discovery Call</span>
+                <span>Inquire Now</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>

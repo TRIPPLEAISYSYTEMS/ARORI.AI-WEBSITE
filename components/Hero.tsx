@@ -53,11 +53,13 @@ const Hero: React.FC = () => {
           {/* Action Buttons */}
           <div className="pt-2 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
-              href="#contact"
-              title="Book a free discovery call to discuss your AI needs"
+              href="https://wa.me/254792767922"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Inquire directly on WhatsApp: 0792767922"
               className="w-full sm:w-auto px-8 py-4 rounded-2xl font-bold text-sm sm:text-base bg-gradient-to-r from-[oklch(0.88_0.12_85)] via-[oklch(0.8_0.14_82)] to-[oklch(0.72_0.16_80)] text-black shadow-xl shadow-[oklch(0.8_0.14_82/25%)] hover:shadow-[oklch(0.8_0.14_82/45%)] hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 group"
             >
-              <span>Book a Discovery Call</span>
+              <span>Inquire Now</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 

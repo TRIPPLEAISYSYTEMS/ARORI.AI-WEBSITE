@@ -1,77 +1,41 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, CheckCircle, Send, Loader2, Sparkles } from 'lucide-react';
-import { ContactFormData } from '../types';
+import { Mail, Phone, MapPin, CheckCircle, ArrowUpRight, Sparkles, Clock, MessageSquare } from 'lucide-react';
+
+const inquiryTopics = [
+  { label: 'Custom AI Agents', message: 'Hello Given, I would like to inquire about Custom AI Agent engineering for our company.' },
+  { label: 'Workflow Automation', message: 'Hello Given, I want to inquire about automating our business processes and CRM pipelines.' },
+  { label: 'Enterprise Telemetry', message: 'Hello Given, I am interested in an operational telemetry and bottleneck audit.' },
+  { label: 'ERP & System Integration', message: 'Hello Given, I would like to inquire about integrating AI with our enterprise database and ERP.' }
+];
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    phone: '',
-    business: '',
-    message: ''
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState(inquiryTopics[0].label);
+  const [customNotes, setCustomNotes] = useState('');
+  const [clientName, setClientName] = useState('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const emailBody = `
-Hi Given Arori & the TRIPPLE AI SYSTEMS Team,
-
-I would like to schedule an enterprise discovery call to discuss our AI automation goals.
-
---- Client Details ---
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone || 'Not provided'}
-Business Vertical: ${formData.business || 'Not specified'}
-
---- Project Scope & Goals ---
-${formData.message}
-
-----------------------
-Sent via TRIPPLE AI SYSTEMS Architecture Portal
-`.trim();
-
-    const subject = encodeURIComponent(`Enterprise Discovery Call: ${formData.name} (${formData.business || 'New Lead'})`);
-    const body = encodeURIComponent(emailBody);
-    const mailtoLink = `mailto:givenarori77@gmail.com?subject=${subject}&body=${body}`;
-
-    setTimeout(() => {
-      window.location.href = mailtoLink;
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        business: '',
-        message: ''
-      });
-    }, 700);
+  const getWhatsAppUrl = () => {
+    const topicObj = inquiryTopics.find(t => t.label === selectedTopic);
+    let text = topicObj ? topicObj.message : 'Hello Given, I am inquiring about TRIPPLE AI SYSTEMS.';
+    if (clientName.trim()) {
+      text += ` My name is ${clientName.trim()}.`;
+    }
+    if (customNotes.trim()) {
+      text += ` Project details: ${customNotes.trim()}`;
+    }
+    return `https://wa.me/254792767922?text=${encodeURIComponent(text)}`;
   };
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10" aria-label="Contact Section">
+    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10" aria-label="Inquire Now Section">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="eyebrow-badge mb-3">08 / INITIATE ENGAGEMENT</div>
+          <div className="eyebrow-badge mb-3">08 / INQUIRE NOW</div>
           <h2 className="text-3xl md:text-5xl font-bold font-heading text-champagne mb-4">
-            Ready to Build Your <span className="gold-gradient-text">Autonomous Future</span>?
+            Connect Directly with <span className="gold-gradient-text">Given Arori</span>
           </h2>
           <p className="text-warm-gray text-base md:text-lg leading-relaxed">
-            Leading enterprises do not wait for the future; they automate today. Schedule a private discovery session with our founding architecture team.
+            Direct executive channel for enterprise AI automation inquiries, custom multi-agent builds, and immediate project scoping via WhatsApp at <strong className="text-champagne font-mono">0792767922</strong>.
           </p>
         </div>
 
@@ -82,25 +46,31 @@ Sent via TRIPPLE AI SYSTEMS Architecture Portal
           <div className="lg:col-span-5 glass-panel-elevated rounded-3xl p-8 sm:p-9 border border-[oklch(0.8_0.12_82/25%)] gold-glow space-y-7 flex flex-col justify-between">
             <div>
               <span className="text-xs uppercase font-mono tracking-wider text-gold font-semibold">Direct Communication Channels</span>
-              <h3 className="font-heading font-bold text-2xl text-champagne mt-1 mb-3">Direct Executive Channels</h3>
+              <h3 className="font-heading font-bold text-2xl text-champagne mt-1 mb-3">Executive Coordinates</h3>
               <p className="text-xs sm:text-sm text-warm-gray leading-relaxed mb-6">
-                Connect directly with our engineering lab for technical inquiries, enterprise RFPs, or strategic partnership evaluation.
+                Connect directly with founding engineer Given Arori Arori for immediate technical feedback, NDA execution, or partnership proposals.
               </p>
 
               <div className="space-y-4">
+                {/* WhatsApp Direct Highlight */}
                 <a 
-                  href="mailto:givenarori77@gmail.com" 
-                  className="glass-panel p-4 rounded-2xl flex items-center space-x-4 border border-[oklch(0.8_0.12_82/20%)] hover:border-gold transition-colors group"
+                  href="https://wa.me/254792767922" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="glass-panel p-4 rounded-2xl flex items-center space-x-4 border border-[oklch(0.8_0.12_82/25%)] hover:border-[#25D366] transition-colors group"
                 >
-                  <div className="glass-icon w-11 h-11 rounded-2xl flex items-center justify-center text-gold shrink-0">
-                    <Mail className="w-5 h-5" />
+                  <div className="glass-icon w-11 h-11 rounded-2xl flex items-center justify-center text-[#25D366] shrink-0">
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
                   </div>
-                  <div>
-                    <span className="text-[11px] text-warm-gray uppercase tracking-wider block font-mono">Principal Email</span>
-                    <span className="text-sm font-semibold text-champagne group-hover:text-gold transition-colors">
-                      givenarori77@gmail.com
+                  <div className="flex-1">
+                    <span className="text-[11px] text-[#25D366] uppercase tracking-wider block font-mono font-semibold">WhatsApp Direct</span>
+                    <span className="text-sm font-bold text-champagne group-hover:text-[#25D366] transition-colors font-mono">
+                      0792767922
                     </span>
                   </div>
+                  <ArrowUpRight className="w-4 h-4 text-warm-gray group-hover:text-[#25D366] transition-colors" />
                 </a>
 
                 <a 
@@ -111,9 +81,24 @@ Sent via TRIPPLE AI SYSTEMS Architecture Portal
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] text-warm-gray uppercase tracking-wider block font-mono">Executive Direct Line</span>
-                    <span className="text-sm font-semibold text-champagne group-hover:text-gold transition-colors">
+                    <span className="text-[11px] text-warm-gray uppercase tracking-wider block font-mono">Phone / Signal</span>
+                    <span className="text-sm font-semibold text-champagne group-hover:text-gold transition-colors font-mono">
                       +254 792 767 922
+                    </span>
+                  </div>
+                </a>
+
+                <a 
+                  href="mailto:givenarori77@gmail.com" 
+                  className="glass-panel p-4 rounded-2xl flex items-center space-x-4 border border-[oklch(0.8_0.12_82/20%)] hover:border-gold transition-colors group"
+                >
+                  <div className="glass-icon w-11 h-11 rounded-2xl flex items-center justify-center text-gold shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-warm-gray uppercase tracking-wider block font-mono">Executive Email</span>
+                    <span className="text-sm font-semibold text-champagne group-hover:text-gold transition-colors break-all">
+                      givenarori77@gmail.com
                     </span>
                   </div>
                 </a>
@@ -125,25 +110,25 @@ Sent via TRIPPLE AI SYSTEMS Architecture Portal
                   <div>
                     <span className="text-[11px] text-warm-gray uppercase tracking-wider block font-mono">Global Headquarters</span>
                     <span className="text-sm font-semibold text-champagne">
-                      Nairobi, Kenya • Worldwide Operations
+                      Nairobi, Kenya • Global Delivery
                     </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Why Choose TRIPPLE AI Sub-Tile */}
+            {/* SLA Sub-Tile */}
             <div className="p-5 rounded-2xl glass-panel border border-[oklch(0.8_0.12_82/20%)] space-y-3">
               <div className="flex items-center space-x-2 text-xs font-semibold text-gold uppercase tracking-wider font-mono">
-                <Sparkles className="w-4 h-4" />
-                <span>The TRIPPLE AI Standard</span>
+                <Clock className="w-4 h-4" />
+                <span>Rapid Response Commitment</span>
               </div>
               <ul className="space-y-2 text-xs text-warm-gray">
                 {[
-                  "100% Client-Owned Intellectual Property",
-                  "Fixed-Price Milestones with Guaranteed ROI",
-                  "SOC-2 Compliant Zero-Leak Sandboxing",
-                  "Dedicated 24/7 Monitored Self-Healing Agents"
+                  "Direct founder access via WhatsApp (0792767922)",
+                  "Sub-hour inquiry triage during Kenyan business hours",
+                  "100% Client-Owned Custom Intellectual Property",
+                  "Guaranteed Fixed-Milestone Delivery"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center space-x-2">
                     <CheckCircle className="w-3.5 h-3.5 text-gold shrink-0" />
@@ -154,118 +139,108 @@ Sent via TRIPPLE AI SYSTEMS Architecture Portal
             </div>
           </div>
 
-          {/* Tile 2: Interactive Consultation Booking Form (7 Cols) */}
-          <div className="lg:col-span-7 glass-panel-elevated rounded-3xl p-8 sm:p-9 border border-[oklch(0.8_0.12_82/25%)] gold-glow space-y-6">
-            <div>
-              <h3 className="font-heading font-bold text-2xl text-champagne">Book Discovery Consultation</h3>
-              <p className="text-xs sm:text-sm text-warm-gray mt-1">
-                Fill in your details to initiate a direct pre-configured email dispatch to Given Arori.
-              </p>
+          {/* Tile 2: Dedicated Inquire Now via WhatsApp Panel (7 Cols) */}
+          <div className="lg:col-span-7 glass-panel-elevated rounded-3xl p-8 sm:p-9 border border-[oklch(0.8_0.12_82/25%)] gold-glow space-y-6 flex flex-col justify-between">
+            <div className="space-y-6">
+              <div>
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] text-xs font-semibold mb-3">
+                  <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+                  <span>WhatsApp Line Active: 0792767922</span>
+                </div>
+                <h3 className="font-heading font-bold text-2xl text-champagne">
+                  Inquire Now for Enterprise Automation
+                </h3>
+                <p className="text-xs sm:text-sm text-warm-gray mt-1 leading-relaxed">
+                  Select your core inquiry focus or draft custom project requirements below. Your message opens directly in WhatsApp with Given Arori.
+                </p>
+              </div>
+
+              {/* Inquiry Focus Selector */}
+              <div>
+                <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-2.5">
+                  Select Inquiry Topic
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {inquiryTopics.map((topic) => {
+                    const isSelected = selectedTopic === topic.label;
+                    return (
+                      <button
+                        key={topic.label}
+                        type="button"
+                        onClick={() => setSelectedTopic(topic.label)}
+                        className={`p-3.5 rounded-2xl text-left transition-all duration-200 border text-xs font-medium flex items-center justify-between ${
+                          isSelected
+                            ? 'bg-gold/15 border-gold text-champagne shadow-md shadow-gold/10'
+                            : 'glass-panel text-warm-gray hover:text-champagne hover:border-gold/40'
+                        }`}
+                      >
+                        <span>{topic.label}</span>
+                        {isSelected && <CheckCircle className="w-3.5 h-3.5 text-gold shrink-0" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Name & Optional Details */}
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
+                    Your Name or Company (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={clientName}
+                    onChange={(e) => setClientName(e.target.value)}
+                    placeholder="e.g. Elena Vance • FinTech Corp"
+                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
+                    Brief Notes or Specific Questions (Optional)
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={customNotes}
+                    onChange={(e) => setCustomNotes(e.target.value)}
+                    placeholder="Mention volume bottlenecks, target platforms (WhatsApp, CRM, ERP), or timeline requirements..."
+                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all resize-none"
+                  />
+                </div>
+              </div>
             </div>
 
-            {submitted && (
-              <div className="p-4 rounded-xl bg-[oklch(0.8_0.14_82/10%)] border border-gold text-gold text-xs font-semibold flex items-center space-x-2">
-                <CheckCircle className="w-4 h-4" />
-                <span>Email client invoked successfully! We will respond within 24 hours.</span>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
-                    Your Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="e.g. Marcus Vance"
-                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
-                    Corporate Email *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="marcus@company.com"
-                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
-                    Phone / WhatsApp
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="+1 (555) 000-0000"
-                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
-                    Business Vertical
-                  </label>
-                  <input
-                    type="text"
-                    name="business"
-                    value={formData.business}
-                    onChange={handleInputChange}
-                    placeholder="e.g. FinTech / SaaS / Logistics"
-                    className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
-                  Operational Bottleneck or Automation Goals *
-                </label>
-                <textarea
-                  name="message"
-                  required
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Describe your current manual bottlenecks, tools in use (CRM, ERP, DB), and desired outcomes..."
-                  className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-[oklch(0.88_0.12_85)] via-[oklch(0.8_0.14_82)] to-[oklch(0.72_0.16_80)] text-black shadow-lg shadow-[oklch(0.8_0.14_82/25%)] hover:shadow-[oklch(0.8_0.14_82/45%)] transition-all duration-300 flex items-center justify-center space-x-2 group disabled:opacity-50"
+            {/* High-Intent Inquire Now Action Buttons */}
+            <div className="space-y-3 pt-2">
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 px-6 rounded-2xl font-bold text-sm sm:text-base bg-gradient-to-r from-[#25D366] via-[#1EBE5D] to-[#128C7E] text-white shadow-xl shadow-[#25D366]/25 hover:shadow-[#25D366]/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center space-x-2.5 group"
               >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Opening Secure Dispatch Client...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Submit Discovery Request</span>
-                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
-              </button>
-            </form>
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                <span>Inquire Now on WhatsApp (0792767922)</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+
+              <div className="flex items-center justify-between text-xs text-warm-gray px-1 pt-1">
+                <span className="flex items-center space-x-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-gold" />
+                  <span>Instant founder channel</span>
+                </span>
+                <a 
+                  href="tel:+254792767922" 
+                  className="text-champagne hover:text-gold transition-colors font-mono font-medium flex items-center space-x-1"
+                >
+                  <Phone className="w-3 h-3" />
+                  <span>Call 0792767922</span>
+                </a>
+              </div>
+            </div>
           </div>
 
         </div>

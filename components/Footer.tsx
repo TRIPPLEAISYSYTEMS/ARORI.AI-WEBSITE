@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = () => {
             <a href="#process" className="hover:text-gold transition-colors">Process</a>
             <a href="#testimonials" className="hover:text-gold transition-colors">Case Studies</a>
             <a href="#faq" className="hover:text-gold transition-colors">FAQ</a>
-            <a href="#contact" className="text-gold hover:text-champagne transition-colors">Initiate Contact</a>
+            <a href="https://wa.me/254792767922" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-champagne transition-colors">Inquire Now</a>
           </div>
         </div>
 
@@ -46,6 +46,7 @@ const Footer: React.FC<FooterProps> = () => {
           </p>
           <div className="flex items-center space-x-4">
             <span className="text-[10px] font-mono uppercase text-gold">Nairobi / Global AI Architecture</span>
+            <a href="https://wa.me/254792767922" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors font-mono">WhatsApp: 0792767922</a>
             <a href="mailto:givenarori77@gmail.com" className="hover:text-gold transition-colors">givenarori77@gmail.com</a>
           </div>
         </div>

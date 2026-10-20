@@ -44,14 +44,14 @@ const ChatBot: React.FC = () => {
       if (!apiKey) {
         // High quality intelligent mock response for agency when key is not configured
         setTimeout(() => {
-          let responseText = "TRIPPLE AI SYSTEMS specializes in bespoke multi-agent swarms, managed automation pipelines, and real-time telemetry. Founded by Given Arori Arori, our engineering team eliminates enterprise bottlenecks with sub-second decision loops. Would you like to schedule an enterprise discovery call?";
+          let responseText = "TRIPPLE AI SYSTEMS specializes in bespoke multi-agent swarms, managed automation pipelines, and real-time telemetry. Founded by Given Arori Arori, our engineering team eliminates enterprise bottlenecks with sub-second decision loops. Would you like to inquire now directly on WhatsApp at 0792767922?";
           const lower = userMessage.toLowerCase();
           if (lower.includes('service') || lower.includes('what do you do') || lower.includes('offer')) {
             responseText = "Our core service matrix spans: 1) Custom AI Agent Engineering (autonomous multi-agent swarms), 2) Managed Automation Pipelines (end-to-end CRM/data sync), 3) Performance Analytics & Telemetry (sub-second operational dashboards), and 4) Enterprise System Integration with SOC-2 compliance.";
           } else if (lower.includes('price') || lower.includes('cost') || lower.includes('pricing')) {
-            responseText = "We operate on transparent, value-based milestone pricing and dedicated engineering retainers tailored to your system's operational ROI. No unexpected license markups. You can request a custom proposal via our contact section!";
-          } else if (lower.includes('contact') || lower.includes('email') || lower.includes('call') || lower.includes('phone')) {
-            responseText = "You can reach Given Arori Arori directly via email at givenarori77@gmail.com or by phone at +254 792 767 922. We also invite you to submit the discovery form on this page!";
+            responseText = "We operate on transparent, value-based milestone pricing and dedicated engineering retainers tailored to your system's operational ROI. No unexpected license markups. You can inquire directly via WhatsApp on 0792767922!";
+          } else if (lower.includes('contact') || lower.includes('email') || lower.includes('call') || lower.includes('phone') || lower.includes('whatsapp')) {
+            responseText = "You can reach Given Arori Arori directly on WhatsApp at 0792767922 (+254 792 767 922) or via email at givenarori77@gmail.com.";
           }
           setMessages(prev => [...prev, { role: 'model', text: responseText }]);
           setIsLoading(false);
@@ -70,9 +70,9 @@ const ChatBot: React.FC = () => {
       4. Enterprise System Integration (SOC-2 sandboxing, legacy database bridges).
       
       Founder: Given Arori Arori.
-      Contact: givenarori77@gmail.com | +254 792 767 922 | Nairobi, Kenya (Global Operations).
+      Contact: givenarori77@gmail.com | WhatsApp / Phone: 0792767922 (+254 792 767 922) | Nairobi, Kenya (Global Operations).
       
-      Tone: Sophisticated, articulate, authoritative, technological, concise. Answer questions directly. Prompt users to book a discovery call when relevant.`;
+      Tone: Sophisticated, articulate, authoritative, technological, concise. Answer questions directly. Prompt users to inquire now via WhatsApp (0792767922) when relevant.`;
 
       const chat = ai.chats.create({
         model: 'gemini-2.5-flash',
