@@ -35,28 +35,29 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const mousePosRef = useRef<{ x: number; y: number; active: boolean }>({ x: 0, y: 0, active: false });
 
-  // Size configuration strictly bounded to the original sphere radius (w-44 h-44 sm:w-56 sm:h-56)
+  // Size configuration: Logo covers most of the space (~86%), with subtle outer solar & lightning rim
   const sizeConfig = {
     sm: { 
       container: 'w-24 h-24', 
-      logo: 'w-12 h-12', 
+      logo: 'w-20 h-20', 
       canvasSize: 96,
-      logoRadius: 22,
+      logoRadius: 36,
       maxRadius: 46
     },
     md: { 
       container: 'w-36 h-36', 
-      logo: 'w-20 h-20', 
+      logo: 'w-30 h-30', 
       canvasSize: 144,
-      logoRadius: 34,
+      logoRadius: 54,
       maxRadius: 70
     },
     lg: { 
-      // Retaining the exact original sphere dimensions: w-44 h-44 sm:w-56 sm:h-56 (radius 88px - 112px)
+      // Original sphere dimensions: w-44 h-44 sm:w-56 sm:h-56.
+      // Logo covers most of space: w-36 h-36 sm:w-48 sm:h-48
       container: 'w-44 h-44 sm:w-56 sm:h-56', 
-      logo: 'w-24 h-24 sm:w-32 sm:h-32', 
+      logo: 'w-36 h-36 sm:w-48 sm:h-48', 
       canvasSize: 224,
-      logoRadius: 48,
+      logoRadius: 84,
       maxRadius: 108
     }
   }[size];
@@ -71,7 +72,7 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
     let bolts: LightningBolt[] = [];
     let embers: SolarEmber[] = [];
     let lastBoltTime = 0;
-    let nextBoltInterval = 75; // ms between lightning strikes
+    let nextBoltInterval = 140; // subtle intermittent pacing
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const canvasDim = sizeConfig.canvasSize;
@@ -83,14 +84,14 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
     const centerY = canvasDim / 2;
     const { logoRadius, maxRadius } = sizeConfig;
 
-    // Helper: midpoint displacement for jagged electric lightning
+    // Helper: midpoint displacement for delicate electric lightning
     const generateJaggedLine = (
       x1: number, 
       y1: number, 
       x2: number, 
       y2: number, 
       displace: number, 
-      minDisplace: number = 3
+      minDisplace: number = 2.5
     ): { x: number; y: number }[] => {
       const midX = (x1 + x2) / 2;
       const midY = (y1 + y2) / 2;
@@ -98,11 +99,10 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
       const dy = y2 - y1;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist < minDisplace || displace < 2) {
+      if (dist < minDisplace || displace < 1.5) {
         return [{ x: x1, y: y1 }, { x: x2, y: y2 }];
       }
 
-      // Perpendicular normal vector
       const nx = -dy / dist;
       const ny = dx / dist;
       const offset = (Math.random() - 0.5) * displace * 2;
@@ -110,54 +110,50 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
       const pX = midX + nx * offset;
       const pY = midY + ny * offset;
 
-      const left = generateJaggedLine(x1, y1, pX, pY, displace * 0.56, minDisplace);
-      const right = generateJaggedLine(pX, pY, x2, y2, displace * 0.56, minDisplace);
+      const left = generateJaggedLine(x1, y1, pX, pY, displace * 0.52, minDisplace);
+      const right = generateJaggedLine(pX, pY, x2, y2, displace * 0.52, minDisplace);
 
       return left.slice(0, left.length - 1).concat(right);
     };
 
-    // Spawn an electrical lightning bolt emanating from the logo and terminating within the sphere radius
+    // Spawn a subtle, delicate lightning bolt right at the logo perimeter
     const spawnBolt = (targetAngle?: number) => {
-      // Starting point near the contour of the logo
       const angle = targetAngle !== undefined 
-        ? targetAngle + (Math.random() - 0.5) * 0.35
+        ? targetAngle + (Math.random() - 0.5) * 0.3
         : Math.random() * Math.PI * 2;
 
-      const startDist = logoRadius * (0.85 + Math.random() * 0.2);
+      // Starts right along the logo contour
+      const startDist = logoRadius * (0.92 + Math.random() * 0.08);
       const startX = centerX + Math.cos(angle) * startDist;
       const startY = centerY + Math.sin(angle) * startDist;
 
-      // Terminates strictly within original sphere radius (maxRadius)
-      const boltReach = logoRadius + (maxRadius - logoRadius) * (0.65 + Math.random() * 0.35);
+      // Reaches subtly outward towards the sphere rim
+      const boltReach = logoRadius + (maxRadius - logoRadius) * (0.55 + Math.random() * 0.4);
       const clampedReach = Math.min(boltReach, maxRadius - 2);
-      const endAngle = angle + (Math.random() - 0.5) * 0.45;
+      const endAngle = angle + (Math.random() - 0.5) * 0.35;
       const endX = centerX + Math.cos(endAngle) * clampedReach;
       const endY = centerY + Math.sin(endAngle) * clampedReach;
 
-      const segments = generateJaggedLine(startX, startY, endX, endY, 14, 3);
+      const segments = generateJaggedLine(startX, startY, endX, endY, 9, 2.5);
 
-      // Create 1-2 smaller electrical branches (staying within radius)
+      // 1 subtle fork branch
       const branches: { segments: { x: number; y: number }[]; alpha: number }[] = [];
-      const numBranches = Math.floor(Math.random() * 2) + 1;
-      for (let b = 0; b < numBranches; b++) {
-        if (segments.length > 3) {
-          const splitIdx = Math.floor(Math.random() * (segments.length - 2)) + 1;
-          const splitPt = segments[splitIdx];
-          const branchAngle = angle + (Math.random() > 0.5 ? 1 : -1) * (0.35 + Math.random() * 0.4);
-          const branchLen = 10 + Math.random() * 18;
-          let bEndX = splitPt.x + Math.cos(branchAngle) * branchLen;
-          let bEndY = splitPt.y + Math.sin(branchAngle) * branchLen;
+      if (segments.length > 3 && Math.random() > 0.4) {
+        const splitIdx = Math.floor(Math.random() * (segments.length - 2)) + 1;
+        const splitPt = segments[splitIdx];
+        const branchAngle = angle + (Math.random() > 0.5 ? 1 : -1) * (0.3 + Math.random() * 0.3);
+        const branchLen = 6 + Math.random() * 10;
+        let bEndX = splitPt.x + Math.cos(branchAngle) * branchLen;
+        let bEndY = splitPt.y + Math.sin(branchAngle) * branchLen;
 
-          // Clamp branch end to max radius
-          const bDist = Math.sqrt((bEndX - centerX) ** 2 + (bEndY - centerY) ** 2);
-          if (bDist > maxRadius) {
-            bEndX = centerX + ((bEndX - centerX) / bDist) * (maxRadius - 2);
-            bEndY = centerY + ((bEndY - centerY) / bDist) * (maxRadius - 2);
-          }
-
-          const branchSegs = generateJaggedLine(splitPt.x, splitPt.y, bEndX, bEndY, 8, 2.5);
-          branches.push({ segments: branchSegs, alpha: 0.85 });
+        const bDist = Math.sqrt((bEndX - centerX) ** 2 + (bEndY - centerY) ** 2);
+        if (bDist > maxRadius) {
+          bEndX = centerX + ((bEndX - centerX) / bDist) * (maxRadius - 2);
+          bEndY = centerY + ((bEndY - centerY) / bDist) * (maxRadius - 2);
         }
+
+        const branchSegs = generateJaggedLine(splitPt.x, splitPt.y, bEndX, bEndY, 5, 2);
+        branches.push({ segments: branchSegs, alpha: 0.65 });
       }
 
       bolts.push({
@@ -165,72 +161,65 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
         segments,
         branches,
         life: 0,
-        maxLife: 4 + Math.floor(Math.random() * 3), // rapid high-voltage crackle
-        width: 1.4 + Math.random() * 1.2,
-        color: Math.random() > 0.3 ? '#FFE600' : '#FFF570'
+        maxLife: 3 + Math.floor(Math.random() * 3), // quick, crisp, subtle crackle
+        width: 0.85 + Math.random() * 0.4, // delicate slender electric filament
+        color: Math.random() > 0.25 ? '#FFE500' : '#FFF385'
       });
     };
 
     // Render loop
-    let lastTime = performance.now();
-
     const render = (now: number) => {
-      lastTime = now;
-
       ctx.clearRect(0, 0, canvasDim, canvasDim);
 
-      // 1. Spawn lightning bursts
-      const interval = isHovered ? 45 : nextBoltInterval;
+      // 1. Spontaneous subtle lightning
+      const interval = isHovered ? 80 : nextBoltInterval;
       if (now - lastBoltTime > interval) {
         lastBoltTime = now;
-        nextBoltInterval = 55 + Math.random() * 110;
+        nextBoltInterval = 120 + Math.random() * 160; // elegant periodic pacing
 
-        const count = isHovered ? (Math.random() > 0.5 ? 3 : 2) : (Math.random() > 0.65 ? 2 : 1);
-        for (let i = 0; i < count; i++) {
-          if (mousePosRef.current.active && isHovered) {
-            const dx = mousePosRef.current.x - centerX;
-            const dy = mousePosRef.current.y - centerY;
-            const mouseAngle = Math.atan2(dy, dx);
-            spawnBolt(mouseAngle);
-          } else {
-            spawnBolt();
-          }
+        if (mousePosRef.current.active && isHovered) {
+          const dx = mousePosRef.current.x - centerX;
+          const dy = mousePosRef.current.y - centerY;
+          const mouseAngle = Math.atan2(dy, dx);
+          spawnBolt(mouseAngle);
+        } else {
+          spawnBolt();
         }
 
-        // Micro-arcs hugging the logo contour
-        if (Math.random() > 0.35) {
-          const microAngle = Math.random() * Math.PI * 2;
-          const mDist = logoRadius * (0.9 + Math.random() * 0.15);
-          const mStartX = centerX + Math.cos(microAngle) * mDist;
-          const mStartY = centerY + Math.sin(microAngle) * mDist;
-          const mEndX = mStartX + (Math.random() - 0.5) * 16;
-          const mEndY = mStartY + (Math.random() - 0.5) * 16;
+        // Occasional micro-spark hugging the rim
+        if (Math.random() > 0.5) {
+          const mAngle = Math.random() * Math.PI * 2;
+          const mDist = logoRadius * (0.96 + Math.random() * 0.06);
+          const mStartX = centerX + Math.cos(mAngle) * mDist;
+          const mStartY = centerY + Math.sin(mAngle) * mDist;
+          const mEndX = mStartX + (Math.random() - 0.5) * 10;
+          const mEndY = mStartY + (Math.random() - 0.5) * 10;
           bolts.push({
             id: Math.random(),
-            segments: generateJaggedLine(mStartX, mStartY, mEndX, mEndY, 6, 2),
+            segments: generateJaggedLine(mStartX, mStartY, mEndX, mEndY, 4, 1.8),
             branches: [],
             life: 0,
             maxLife: 3,
-            width: 1.0,
-            color: '#FFFFA0'
+            width: 0.7,
+            color: '#FFFFB0'
           });
         }
       }
 
-      // 2. Solar embers (contained strictly inside sphere radius)
-      if (Math.random() > 0.4) {
+      // 2. Subtle solar embers (tiny delicate sparks drifting just off the edge)
+      if (Math.random() > 0.65) {
         const emberAngle = Math.random() * Math.PI * 2;
-        const emberDist = logoRadius * (0.8 + Math.random() * 0.3);
-        const speed = 0.4 + Math.random() * 0.8;
+        const emberDist = logoRadius * (0.95 + Math.random() * 0.08);
+        const speed = 0.3 + Math.random() * 0.5;
         embers.push({
           x: centerX + Math.cos(emberAngle) * emberDist,
           y: centerY + Math.sin(emberAngle) * emberDist,
-          vx: Math.cos(emberAngle) * speed + (Math.random() - 0.5) * 0.2,
-          vy: Math.sin(emberAngle) * speed + (Math.random() - 0.5) * 0.2,
-          size: 1 + Math.random() * 1.8,
+          vx: Math.cos(emberAngle) * speed + (Math.random() - 0.5) * 0.15,
+          vy: Math.sin(emberAngle) * speed + (Math.random() - 0.5) * 0.15,
+          size: 0.7 + Math.random() * 1.1,
           life: 0,
-          maxLife: 22 + Math.random() * 30,
-          color: Math.random() > 0.5 ? '#FFD700' : (Math.random() > 0.5 ? '#FF7A00' : '#FFEA00')
+          maxLife: 18 + Math.random() * 24,
+          color: Math.random() > 0.4 ? '#FFD700' : '#FFA000'
         });
       }
 
@@ -242,7 +231,6 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
         e.y += e.vy;
         e.life++;
 
-        // Fade out or dissolve if reaching sphere radius
         const currentDist = Math.sqrt((e.x - centerX) ** 2 + (e.y - centerY) ** 2);
         const progress = e.life / e.maxLife;
 
@@ -251,20 +239,18 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
           continue;
         }
 
-        const edgeFade = Math.max(0, 1 - (currentDist / maxRadius) ** 3);
-        const alpha = Math.sin((1 - progress) * Math.PI * 0.5) * edgeFade;
-
+        const alpha = Math.sin((1 - progress) * Math.PI * 0.5) * 0.55;
         ctx.fillStyle = e.color;
-        ctx.globalAlpha = alpha * 0.85;
-        ctx.shadowBlur = 6;
+        ctx.globalAlpha = alpha;
+        ctx.shadowBlur = 4;
         ctx.shadowColor = e.color;
         ctx.beginPath();
-        ctx.arc(e.x, e.y, e.size * (1 - progress * 0.35), 0, Math.PI * 2);
+        ctx.arc(e.x, e.y, e.size * (1 - progress * 0.3), 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.restore();
 
-      // 3. Draw Lightning Bolts (Yellow with white-hot core)
+      // 3. Draw Lightning Bolts (Subtle, crisp, noticeable electric yellow)
       ctx.save();
       for (let i = bolts.length - 1; i >= 0; i--) {
         const bolt = bolts[i];
@@ -277,12 +263,12 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
 
         const fade = 1 - (bolt.life / bolt.maxLife);
 
-        // PASS 1: Outer electric amber glow
-        ctx.lineWidth = bolt.width * 2.2;
-        ctx.strokeStyle = '#FFA500';
-        ctx.shadowColor = '#FFE600';
-        ctx.shadowBlur = 12;
-        ctx.globalAlpha = fade * 0.65;
+        // PASS 1: Soft warm electric aura
+        ctx.lineWidth = bolt.width * 2.0;
+        ctx.strokeStyle = '#FFA000';
+        ctx.shadowColor = '#FFE500';
+        ctx.shadowBlur = 6;
+        ctx.globalAlpha = fade * 0.45;
         ctx.beginPath();
         for (let s = 0; s < bolt.segments.length; s++) {
           const pt = bolt.segments[s];
@@ -291,26 +277,12 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
         }
         ctx.stroke();
 
-        // PASS 2: Mid vivid electric yellow arc
-        ctx.lineWidth = bolt.width * 1.3;
+        // PASS 2: Crisp vivid electric yellow filament
+        ctx.lineWidth = bolt.width;
         ctx.strokeStyle = bolt.color;
         ctx.shadowColor = '#FFFFFF';
-        ctx.shadowBlur = 6;
-        ctx.globalAlpha = fade * 0.95;
-        ctx.beginPath();
-        for (let s = 0; s < bolt.segments.length; s++) {
-          const pt = bolt.segments[s];
-          if (s === 0) ctx.moveTo(pt.x, pt.y);
-          else ctx.lineTo(pt.x, pt.y);
-        }
-        ctx.stroke();
-
-        // PASS 3: Blinding white core
-        ctx.lineWidth = Math.max(0.8, bolt.width * 0.55);
-        ctx.strokeStyle = '#FFFFFF';
         ctx.shadowBlur = 3;
-        ctx.shadowColor = '#FFFFFF';
-        ctx.globalAlpha = fade;
+        ctx.globalAlpha = fade * 0.85;
         ctx.beginPath();
         for (let s = 0; s < bolt.segments.length; s++) {
           const pt = bolt.segments[s];
@@ -319,12 +291,12 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
         }
         ctx.stroke();
 
-        // Draw sub-branches
+        // Draw branch if any
         for (const branch of bolt.branches) {
-          ctx.lineWidth = Math.max(0.8, bolt.width * 0.65);
+          ctx.lineWidth = Math.max(0.6, bolt.width * 0.7);
           ctx.strokeStyle = bolt.color;
-          ctx.shadowColor = '#FFE600';
-          ctx.shadowBlur = 6;
+          ctx.shadowColor = '#FFE500';
+          ctx.shadowBlur = 3;
           ctx.globalAlpha = fade * branch.alpha;
           ctx.beginPath();
           for (let s = 0; s < branch.segments.length; s++) {
@@ -371,93 +343,59 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative flex items-center justify-center select-none group cursor-pointer transition-transform duration-500 hover:scale-105 ${sizeConfig.container} ${className}`}
+      className={`relative flex items-center justify-center select-none group cursor-pointer transition-transform duration-500 hover:scale-103 ${sizeConfig.container} ${className}`}
       aria-label="TRIPPLE AI SYSTEMS Living Solar Logo"
     >
       {/* ========================================================
-          LAYER 1: SOLAR CORE AMBIENT GLOW
-          Strictly bounded within original sphere dimensions
+          LAYER 1: VERY SUBTLE SOLAR AMBIENT GLOW
+          Soft, refined star radiance hugging the logo
           ======================================================== */}
-      {/* Ambient solar corona glow within sphere boundary */}
+      {/* Subtle outer solar glow */}
       <div 
-        className="absolute inset-0 rounded-full pointer-events-none transition-all duration-700 blur-[28px]"
+        className="absolute inset-[3%] rounded-full pointer-events-none transition-all duration-700 blur-[20px]"
         style={{
-          background: 'radial-gradient(circle, rgba(255,150,0,0.55) 0%, rgba(255,210,0,0.38) 45%, rgba(255,75,0,0.18) 75%, transparent 100%)',
-          transform: isHovered ? 'scale(1.12)' : 'scale(1.0)'
+          background: 'radial-gradient(circle, rgba(255,160,0,0.38) 0%, rgba(255,210,40,0.22) 50%, rgba(255,80,0,0.08) 78%, transparent 100%)',
+          transform: isHovered ? 'scale(1.08)' : 'scale(1.0)'
         }}
       />
 
-      {/* Pulsing solar core */}
+      {/* Gentle living pulse in the core */}
       <div 
-        className="absolute inset-[10%] rounded-full pointer-events-none blur-[18px] animate-pulse"
+        className="absolute inset-[15%] rounded-full pointer-events-none blur-[14px] animate-pulse"
         style={{
-          background: 'radial-gradient(circle, rgba(255,255,220,0.8) 0%, rgba(255,200,30,0.65) 40%, rgba(255,100,0,0.4) 75%, transparent 100%)',
-          animationDuration: '3s'
+          background: 'radial-gradient(circle, rgba(255,255,220,0.45) 0%, rgba(255,190,30,0.25) 55%, transparent 100%)',
+          animationDuration: '3.5s'
         }}
       />
 
       {/* ========================================================
-          LAYER 2: FIERY SOLAR FLARES LIKE THE SUN
-          (Flairs emanate from logo to the exact original sphere radius)
+          LAYER 2: SUBTLE SOLAR FLARES & CORONA FRINGES
+          Delicate flame tips licking out right from the logo rim
           ======================================================== */}
-      {/* Solar Flare Corona Layer 1: Clockwise rotation */}
-      <div className="absolute inset-0 pointer-events-none animate-[spin_35s_linear_infinite] opacity-90 mix-blend-screen">
+      {/* Solar Flare Layer 1: Clockwise rotation */}
+      <div className="absolute inset-0 pointer-events-none animate-[spin_40s_linear_infinite] opacity-50 mix-blend-screen">
         <svg viewBox="0 0 240 240" className="w-full h-full">
           <defs>
-            <radialGradient id="solarFlareGrad1" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#FFF8D6" stopOpacity="0.95" />
-              <stop offset="40%" stopColor="#FFB800" stopOpacity="0.85" />
-              <stop offset="70%" stopColor="#FF4500" stopOpacity="0.55" />
-              <stop offset="92%" stopColor="#C91900" stopOpacity="0.2" />
+            <radialGradient id="solarSubtleGrad1" cx="50%" cy="50%" r="50%">
+              <stop offset="60%" stopColor="#FFF2A0" stopOpacity="0.8" />
+              <stop offset="82%" stopColor="#FFA500" stopOpacity="0.5" />
+              <stop offset="96%" stopColor="#FF4500" stopOpacity="0.2" />
               <stop offset="100%" stopColor="#800000" stopOpacity="0" />
             </radialGradient>
-            <filter id="solarBlur1" x="-15%" y="-15%" width="130%" height="130%">
-              <feGaussianBlur stdDeviation="2.2" />
-            </filter>
-          </defs>
-          {/* 16 Solar Flare Tongues emanating to the sphere edge (radius <= 108) */}
-          <g filter="url(#solarBlur1)" fill="url(#solarFlareGrad1)">
-            {Array.from({ length: 16 }).map((_, i) => {
-              const rot = (i * 360) / 16;
-              // Flare lengths between 85 and 108 (strictly within the 112px sphere radius)
-              const flareLen = 86 + (i % 2 === 0 ? 20 : 8) + (i % 3 === 0 ? 4 : 0);
-              return (
-                <path
-                  key={i}
-                  transform={`rotate(${rot} 120 120)`}
-                  d={`M 115,120 C 111,${120 - flareLen * 0.45} 107,${120 - flareLen * 0.75} 120,${120 - flareLen} C 133,${120 - flareLen * 0.75} 129,${120 - flareLen * 0.45} 125,120 Z`}
-                />
-              );
-            })}
-          </g>
-        </svg>
-      </div>
-
-      {/* Solar Flare Corona Layer 2: Counter-clockwise rotation with curved plasma tongues */}
-      <div className="absolute inset-0 pointer-events-none animate-[spin_22s_linear_infinite_reverse] opacity-80 mix-blend-screen">
-        <svg viewBox="0 0 240 240" className="w-full h-full">
-          <defs>
-            <radialGradient id="solarFlareGrad2" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
-              <stop offset="35%" stopColor="#FFE066" stopOpacity="0.9" />
-              <stop offset="65%" stopColor="#FF7700" stopOpacity="0.6" />
-              <stop offset="90%" stopColor="#D62400" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#660000" stopOpacity="0" />
-            </radialGradient>
-            <filter id="solarBlur2" x="-15%" y="-15%" width="130%" height="130%">
+            <filter id="solarSubtleBlur1" x="-10%" y="-10%" width="120%" height="120%">
               <feGaussianBlur stdDeviation="1.6" />
             </filter>
           </defs>
-          {/* Curved, twisting solar prominences reaching to the sphere perimeter */}
-          <g filter="url(#solarBlur2)" fill="url(#solarFlareGrad2)">
-            {Array.from({ length: 12 }).map((_, i) => {
-              const rot = (i * 360) / 12 + 15;
-              const flareLen = 88 + (i % 2 === 0 ? 18 : 6);
+          {/* Subtle flare tips hugging the logo radius (flare length 92 - 105) */}
+          <g filter="url(#solarSubtleBlur1)" fill="url(#solarSubtleGrad1)">
+            {Array.from({ length: 16 }).map((_, i) => {
+              const rot = (i * 360) / 16;
+              const flareLen = 92 + (i % 2 === 0 ? 12 : 5);
               return (
                 <path
                   key={i}
                   transform={`rotate(${rot} 120 120)`}
-                  d={`M 116,120 Q 104,${120 - flareLen * 0.55} 115,${120 - flareLen} Q 132,${120 - flareLen * 0.65} 124,120 Z`}
+                  d={`M 116,120 C 114,${120 - flareLen * 0.6} 112,${120 - flareLen * 0.85} 120,${120 - flareLen} C 128,${120 - flareLen * 0.85} 126,${120 - flareLen * 0.6} 124,120 Z`}
                 />
               );
             })}
@@ -465,28 +403,39 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
         </svg>
       </div>
 
-      {/* Coronal plasma ejection loops (curling within the sphere radius) */}
-      <div className="absolute inset-0 pointer-events-none opacity-80 mix-blend-screen animate-pulse" style={{ animationDuration: '3.6s' }}>
+      {/* Solar Flare Layer 2: Counter-clockwise subtle curved prominences */}
+      <div className="absolute inset-0 pointer-events-none animate-[spin_26s_linear_infinite_reverse] opacity-40 mix-blend-screen">
         <svg viewBox="0 0 240 240" className="w-full h-full">
           <defs>
-            <linearGradient id="coronalLoopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFAA00" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#FFF275" stopOpacity="1" />
-              <stop offset="100%" stopColor="#FF5500" stopOpacity="0.8" />
-            </linearGradient>
+            <radialGradient id="solarSubtleGrad2" cx="50%" cy="50%" r="50%">
+              <stop offset="65%" stopColor="#FFFFFF" stopOpacity="0.75" />
+              <stop offset="85%" stopColor="#FFC830" stopOpacity="0.45" />
+              <stop offset="98%" stopColor="#FF6600" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="#660000" stopOpacity="0" />
+            </radialGradient>
+            <filter id="solarSubtleBlur2" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="1.2" />
+            </filter>
           </defs>
-          <g stroke="url(#coronalLoopGrad)" strokeWidth="2.2" fill="none" strokeLinecap="round">
-            <path d="M 96,120 C 78,85 110,70 120,95" className="opacity-90" />
-            <path d="M 135,115 C 165,95 170,135 142,142" className="opacity-80" />
-            <path d="M 110,145 C 92,175 140,178 132,150" className="opacity-85" />
-            <path d="M 95,130 C 68,140 76,108 98,114" className="opacity-75" />
+          <g filter="url(#solarSubtleBlur2)" fill="url(#solarSubtleGrad2)">
+            {Array.from({ length: 12 }).map((_, i) => {
+              const rot = (i * 360) / 12 + 15;
+              const flareLen = 94 + (i % 2 === 0 ? 10 : 4);
+              return (
+                <path
+                  key={i}
+                  transform={`rotate(${rot} 120 120)`}
+                  d={`M 117,120 Q 110,${120 - flareLen * 0.7} 118,${120 - flareLen} Q 128,${120 - flareLen * 0.75} 123,120 Z`}
+                />
+              );
+            })}
           </g>
         </svg>
       </div>
 
       {/* ========================================================
-          LAYER 3: REAL-TIME YELLOW LIGHTNING CANVAS
-          (Emanating from logo and terminating at original sphere radius)
+          LAYER 3: PROCEDURAL SUBTLE YELLOW LIGHTNING CANVAS
+          Slender, crisp electric filaments crackling along the rim
           ======================================================== */}
       <canvas
         ref={canvasRef}
@@ -498,12 +447,12 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
       />
 
       {/* ========================================================
-          LAYER 4: THE LOGO IN THE CENTER
-          (Free of any circular border, bathed in living solar fire)
+          LAYER 4: LOGO COVERING MOST OF THE SPACE
+          Prominent, high-clarity, with subtle living golden glow
           ======================================================== */}
       <div 
         className={`relative z-10 flex items-center justify-center transition-transform duration-500 ease-out ${sizeConfig.logo} ${
-          isHovered ? 'scale-108' : 'group-hover:scale-104'
+          isHovered ? 'scale-104' : 'group-hover:scale-102'
         }`}
       >
         <img
@@ -512,16 +461,11 @@ export const SolarLightningLogo: React.FC<SolarLightningLogoProps> = ({
           className="w-full h-full object-contain select-none pointer-events-none transition-all duration-300"
           style={{
             filter: isHovered
-              ? 'drop-shadow(0 0 16px rgba(255, 230, 0, 1)) drop-shadow(0 0 32px rgba(255, 120, 0, 0.9)) drop-shadow(0 0 50px rgba(255, 60, 0, 0.7)) brightness(1.15)'
-              : 'drop-shadow(0 0 12px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 26px rgba(255, 100, 0, 0.75)) drop-shadow(0 0 42px rgba(255, 45, 0, 0.5)) brightness(1.08)'
+              ? 'drop-shadow(0 0 12px rgba(255, 215, 0, 0.75)) drop-shadow(0 0 24px rgba(255, 130, 0, 0.45)) brightness(1.08)'
+              : 'drop-shadow(0 0 8px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 18px rgba(255, 120, 0, 0.3)) brightness(1.03)'
           }}
         />
       </div>
-
-      {/* Living pulse wave on hover (constrained to the sphere radius) */}
-      {isHovered && (
-        <div className="absolute inset-0 rounded-full border border-yellow-300/40 pointer-events-none animate-ping" style={{ animationDuration: '1.2s' }} />
-      )}
     </div>
   );
 };
