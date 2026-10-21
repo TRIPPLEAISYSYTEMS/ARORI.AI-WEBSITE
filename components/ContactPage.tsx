@@ -129,12 +129,12 @@ Sent via TRIPPLE AI SYSTEMS Dedicated Contact Portal
             <span>Return to Flagship Experience</span>
           </a>
 
-          <div className="eyebrow-badge mb-3">EXECUTIVE DISPATCH</div>
+          <div className="eyebrow-badge mb-3">GET IN TOUCH</div>
           <h1 className="text-4xl sm:text-6xl font-bold font-heading text-champagne tracking-tight mb-4">
             Connect with <span className="gold-gradient-text">TRIPPLE AI</span>
           </h1>
           <p className="text-warm-gray text-base sm:text-lg max-w-2xl leading-relaxed">
-            Direct access to our founding AI architecture team. Whether you have questions regarding sovereign agent pipelines or require a custom proposal, our engineers are ready.
+            Direct access to Given Arori and the TRIPPLE AI team. Tell us what repetitive computer work you want automated, and we will show you how simple it is to get started.
           </p>
         </div>
 
@@ -242,9 +242,9 @@ Sent via TRIPPLE AI SYSTEMS Dedicated Contact Portal
 
             <div className="glass-panel-elevated rounded-3xl p-7 sm:p-9 border border-[oklch(0.8_0.12_82/30%)] gold-glow space-y-5">
               <div>
-                <h3 className="font-heading font-bold text-xl text-champagne">Send Architecture Inquiry</h3>
+                <h3 className="font-heading font-bold text-xl text-champagne">Send Us a Direct Message</h3>
                 <p className="text-xs text-warm-gray mt-1">
-                  We treat all project briefs with rigorous enterprise confidentiality.
+                  We keep all inquiries strictly confidential and reply within 24 hours.
                 </p>
               </div>
 

@@ -1,27 +1,15 @@
 import React from 'react';
 import { ArrowUpRight, Bot, Zap, BarChart3, ShieldCheck, Sparkles } from 'lucide-react';
+import SolarLightningLogo from './SolarLightningLogo';
 
 const Hero: React.FC = () => {
   return (
     <section id="home" className="pt-32 sm:pt-40 pb-20 px-4 sm:px-6 lg:px-8 relative z-10" aria-label="Hero Section">
       <div className="max-w-7xl mx-auto">
         
-        {/* Top: Retaining Original Logo Prominently at the Top */}
-        <div className="mb-10 flex justify-center">
-          <div className="relative group">
-            {/* Ambient Radiant Gold Glow Halo */}
-            <div className="absolute inset-0 bg-[oklch(0.8_0.14_82/25%)] blur-[75px] rounded-full group-hover:bg-[oklch(0.8_0.14_82/35%)] transition-all duration-700 pointer-events-none" />
-            
-            {/* Glass Ring Halo */}
-            <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full glass-panel flex items-center justify-center p-6 transition-transform duration-500 hover:scale-105 border border-[oklch(0.8_0.12_82/35%)] shadow-2xl">
-              <div className="absolute inset-2 rounded-full border border-dashed border-[oklch(0.8_0.12_82/25%)] animate-[spin_180s_linear_infinite]" />
-              <img 
-                src="logo.png" 
-                alt="TRIPPLE AI SYSTEMS Logo - The Future of AI Automation" 
-                className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(240,183,59,0.45)] relative z-10"
-              />
-            </div>
-          </div>
+        {/* Top: Living Solar Logo with Fiery Sun Flares and Crackling Yellow Lightning */}
+        <div className="mb-10 sm:mb-12 flex justify-center">
+          <SolarLightningLogo size="lg" />
         </div>
 
         {/* Hero Center Text & Actions */}
@@ -47,7 +35,7 @@ const Hero: React.FC = () => {
           </h1>
 
           <p className="text-warm-gray text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
-            We are a premier <strong className="text-champagne font-semibold">AI Automation Agency</strong> engineering bespoke multi-agent workforces and managed pipelines to eliminate bottlenecks, accelerate operations, and unlock hidden revenue—without replacing your team.
+            We build custom AI assistants and hands-free business automations that take boring, repetitive computer work off your plate, speed up your daily operations, and help your company grow—without replacing your staff.
           </p>
 
           {/* Action Buttons */}
@@ -77,7 +65,7 @@ const Hero: React.FC = () => {
               className="w-full sm:w-auto px-6 py-4 rounded-2xl font-semibold text-sm glass-panel text-warm-gray hover:text-champagne hover:border-gold transition-colors duration-300 flex items-center justify-center space-x-2"
             >
               <Sparkles className="w-4 h-4 text-gold" />
-              <span>System Directive</span>
+              <span>How It Works</span>
             </a>
           </div>
         </div>
@@ -93,18 +81,18 @@ const Hero: React.FC = () => {
                   <Bot className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full glass-pill text-gold">
-                  &lt; 380MS
+                  ALWAYS ON
                 </span>
               </div>
               <h3 className="font-heading font-bold text-lg text-champagne group-hover:text-gold transition-colors mb-2">
-                Custom AI Agents
+                Smart Digital Assistants
               </h3>
               <p className="text-xs sm:text-sm text-warm-gray leading-relaxed">
-                Autonomous agent swarms executing multi-step reasoning, tool dispatch, and deterministic fallback loops.
+                Virtual staff members that answer customer questions, handle daily data entry, and organize records 24/7 without making mistakes.
               </p>
             </div>
             <div className="pt-4 mt-5 border-t border-[oklch(0.8_0.12_82/15%)] flex items-center justify-between text-[11px] font-mono text-gold">
-              <span>Bespoke Swarms</span>
+              <span>Zero Human Fatigue</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
@@ -118,18 +106,18 @@ const Hero: React.FC = () => {
                   <Zap className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full glass-pill text-gold">
-                  24/7 ACTIVE
+                  ZERO MANUAL WORK
                 </span>
               </div>
               <h3 className="font-heading font-bold text-lg text-champagne group-hover:text-gold transition-colors mb-2">
-                Managed Pipelines
+                Hands-Free Workflows
               </h3>
               <p className="text-xs sm:text-sm text-warm-gray leading-relaxed">
-                Zero-friction data ingestion and autonomous CRM sync bridging modern LLMs with your legacy ERP databases.
+                Connect your WhatsApp, spreadsheets, email, and billing tools so data flows across your business automatically with zero copy-pasting.
               </p>
             </div>
             <div className="pt-4 mt-5 border-t border-[oklch(0.8_0.12_82/15%)] flex items-center justify-between text-[11px] font-mono text-gold">
-              <span>Automated ETL</span>
+              <span>Automatic Syncing</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
@@ -143,18 +131,18 @@ const Hero: React.FC = () => {
                   <BarChart3 className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full glass-pill text-gold">
-                  99.98% ACC
+                  CLEAR NUMBERS
                 </span>
               </div>
               <h3 className="font-heading font-bold text-lg text-champagne group-hover:text-gold transition-colors mb-2">
-                Real-Time Telemetry
+                Live Business Dashboards
               </h3>
               <p className="text-xs sm:text-sm text-warm-gray leading-relaxed">
-                Auditable dashboards monitoring exact cost per token, latency curves, and immediate operational ROI tracking.
+                Simple, real-time visual dashboards showing where time is being saved, how quickly tasks finish, and your exact return on investment.
               </p>
             </div>
             <div className="pt-4 mt-5 border-t border-[oklch(0.8_0.12_82/15%)] flex items-center justify-between text-[11px] font-mono text-gold">
-              <span>Predictive Audits</span>
+              <span>Instant Visibility</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
@@ -168,18 +156,18 @@ const Hero: React.FC = () => {
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full glass-pill text-gold">
-                  SOC-2 READY
+                  100% PRIVATE
                 </span>
               </div>
               <h3 className="font-heading font-bold text-lg text-champagne group-hover:text-gold transition-colors mb-2">
-                Sovereign Privacy
+                Total Ownership &amp; Privacy
               </h3>
               <p className="text-xs sm:text-sm text-warm-gray leading-relaxed">
-                Complete IP retention with client-isolated sandbox execution. Your confidential enterprise data is never leaked.
+                You own 100% of all software and tools we build. Your private company records remain confidential and are never shared or leaked.
               </p>
             </div>
             <div className="pt-4 mt-5 border-t border-[oklch(0.8_0.12_82/15%)] flex items-center justify-between text-[11px] font-mono text-gold">
-              <span>100% IP Retained</span>
+              <span>Bank-Grade Security</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>

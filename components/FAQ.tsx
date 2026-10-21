@@ -4,28 +4,28 @@ import { FaqItem } from '../types';
 
 const faqs: FaqItem[] = [
   {
-    question: "How long does enterprise agent implementation typically take?",
-    answer: "Most production deployments transition from initial discovery to active deployment within 6 to 12 weeks. Because our engineering is modular and agile, you begin testing functional sandbox prototypes as early as Week 3, allowing for real-world tuning long before final production rollout."
+    question: "How long does it take to build and launch an automation?",
+    answer: "Most custom business automations are built, tested, and live within 2 to 4 weeks. You get to test a working prototype by Week 2, allowing us to tweak it to your exact daily routine before introducing it to your team."
   },
   {
-    question: "Who retains ownership of the custom AI solutions and confidential data?",
-    answer: "You retain 100% full ownership. All custom agent weights, custom pipeline orchestrations, tools, prompts, database bridges, and telemetry logs remain your exclusive intellectual property. We sign comprehensive IP assignment and NDA agreements prior to commencing any project."
+    question: "Who owns the automations, tools, and company data?",
+    answer: "You own everything 100%. All custom code, workflows, connections, and business data belong entirely to you. We sign a strict confidentiality agreement (NDA) before starting, and we never keep or sell your business data."
   },
   {
     question: "How is TRIPPLE AI SYSTEMS pricing structured?",
-    answer: "We employ value-based, milestone-driven pricing tailored directly to the complexity and operational ROI of your organization. Following our discovery workshop, we furnish a transparent fixed-price milestone agreement or flexible dedicated engineering retainer. There are never surprise licensing markups or hidden fees."
+    answer: "We offer simple, transparent pricing based on clear milestones. After a quick 15-minute conversation to see what you need automated, you receive a fixed quote with clear stages. There are no surprise hourly fees, hidden costs, or confusing subscriptions."
   },
   {
-    question: "Will implementing AI automation replace or displace our existing team?",
-    answer: "No. Our core engineering principle is augmentation, not displacement. We eliminate high-friction, repetitive drudgery (manual data re-entry, triage queues, routine reconciliations) so your talented personnel can focus on creative problem-solving, strategic expansion, and high-touch client relationships."
+    question: "Will these AI automations replace our existing employees?",
+    answer: "No. Our tools are designed to support your team, not replace them. We take over the boring, repetitive chores—like typing numbers into spreadsheets, reading invoices, and answering common customer questions—so your staff can focus on serving clients and growing your business."
   },
   {
-    question: "How do you guarantee enterprise data security and compliance?",
-    answer: "Security is non-negotiable. We operate under zero-trust enterprise paradigms, encrypting all data in transit (TLS 1.3) and at rest (AES-256). All models run in customer-isolated sovereign virtual environments, ensuring proprietary company data is never used to train public foundation models."
+    question: "How do you protect our private company information?",
+    answer: "Your privacy is fully protected. We use bank-level encryption, and your private business information is never shared or used to train public AI models. Everything runs inside private, secured accounts that only your company controls."
   },
   {
-    question: "What LLMs and agent frameworks do you build on?",
-    answer: "We primarily utilize Google's advanced Gemini 3.0 Pro reasoning infrastructure along with specialized open-weight models when on-prem air-gapped hosting is required. For orchestration, we engineer deterministic Python and TypeScript multi-agent swarms with granular state checkpointing."
+    question: "Do we need new software or can this work with our current tools?",
+    answer: "You do not need to replace anything you currently use. We connect directly with the tools you already rely on every day—including WhatsApp, Gmail, Outlook, Google Sheets, Microsoft Excel, QuickBooks, and your existing accounting or CRM software."
   }
 ];
 
@@ -43,10 +43,10 @@ const FAQ: React.FC = () => {
         <div className="text-center mb-16">
           <div className="eyebrow-badge mb-3">07 / FREQUENTLY ASKED QUESTIONS</div>
           <h2 className="text-3xl md:text-5xl font-bold font-heading text-champagne mb-4">
-            Answers &amp; <span className="gold-gradient-text">Architectural Details</span>
+            Answers &amp; <span className="gold-gradient-text">Clear Explanations</span>
           </h2>
           <p className="text-warm-gray text-base md:text-lg max-w-2xl mx-auto">
-            Everything you need to know about partnering with TRIPPLE AI SYSTEMS to build sovereign enterprise automation.
+            Everything you need to know about working with TRIPPLE AI SYSTEMS to automate your everyday business work.
           </p>
         </div>
 

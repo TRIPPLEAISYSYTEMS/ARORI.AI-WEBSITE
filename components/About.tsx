@@ -8,12 +8,12 @@ const About: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="eyebrow-badge mb-3">01 / ABOUT TRIPPLE AI</div>
+          <div className="eyebrow-badge mb-3">01 / WHO WE ARE</div>
           <h2 className="text-3xl md:text-5xl font-bold font-heading text-champagne mb-4">
-            Architecting <span className="gold-gradient-text">Sovereign Intelligence</span>
+            Smart AI, Built to <span className="gold-gradient-text">Work for You</span>
           </h2>
           <p className="text-warm-gray text-base md:text-lg leading-relaxed">
-            Founded by Given Arori Arori, TRIPPLE AI SYSTEMS builds resilient, self-governing multi-agent architectures designed to turn operational friction into automated velocity.
+            Founded by Given Arori Arori, TRIPPLE AI SYSTEMS builds dependable AI assistants that do the tedious, repetitive computer work so your business can run faster and grow smoothly.
           </p>
         </div>
 
@@ -25,15 +25,15 @@ const About: React.FC = () => {
             <div>
               <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full glass-pill border border-[oklch(0.8_0.12_82/30%)] text-gold text-xs font-semibold mb-6">
                 <Target className="w-3.5 h-3.5" />
-                <span>The Sovereign Directive</span>
+                <span>Our Practical Promise</span>
               </div>
               
               <h3 className="text-2xl sm:text-3xl font-bold font-heading text-champagne mb-4 leading-snug">
-                Bridging Complex Artificial Intelligence with Real Enterprise Utility
+                Making Modern AI Simple, Practical, and Profitable
               </h3>
 
               <p className="text-warm-gray text-sm sm:text-base leading-relaxed mb-6">
-                Most agencies assemble fragile wrappers that fail under load. We engineer sovereign multi-agent swarms integrated directly into core company ERPs, relational databases, and customer communication pipelines.
+                Many AI tools sound flashy on social media but break down when real business work starts. We build sturdy, dependable automations that plug straight into your daily spreadsheets, WhatsApp, and software, giving your team back hours of productive time every week.
               </p>
             </div>
 
@@ -43,8 +43,8 @@ const About: React.FC = () => {
                   <Cpu className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-champagne">Zero Wrappers</h4>
-                  <p className="text-[11px] text-warm-gray">Bespoke Python &amp; Gemini Agents</p>
+                  <h4 className="text-xs font-bold text-champagne">Custom Tailored</h4>
+                  <p className="text-[11px] text-warm-gray">Built around your exact daily routine</p>
                 </div>
               </div>
 
@@ -53,8 +53,8 @@ const About: React.FC = () => {
                   <Shield className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-champagne">100% Sovereign IP</h4>
-                  <p className="text-[11px] text-warm-gray">Complete Client Ownership</p>
+                  <h4 className="text-xs font-bold text-champagne">100% Yours</h4>
+                  <p className="text-[11px] text-warm-gray">You own all tools and code permanently</p>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ const About: React.FC = () => {
               </div>
 
               <p className="text-warm-gray text-xs sm:text-sm leading-relaxed mb-6 italic">
-                "Our commitment is simple: eliminate organizational bottlenecks, accelerate operational velocity, and empower human ingenuity through transparent, verifiable artificial intelligence."
+                "Our goal is simple: take the boring, repetitive tasks off your shoulders so you and your team can focus on what actually moves your business forward."
               </p>
             </div>
 
@@ -117,16 +117,16 @@ const About: React.FC = () => {
             </div>
 
             <h4 className="font-heading font-bold text-xl text-champagne mb-2">
-              10,000 Enterprise Partners
+              Empowering 10,000 Businesses
             </h4>
             <p className="text-xs sm:text-sm text-warm-gray leading-relaxed mb-6">
-              Scaling our autonomous agent pipelines across 5 continents: North America, Europe, Africa, Asia, and Latin America.
+              Helping businesses in Kenya and across 5 continents stop wasting time on manual paperwork and administrative drudgery.
             </p>
 
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-mono text-warm-gray">
-                <span>Operational Footprint</span>
-                <span className="text-gold font-bold">5 Continents Active</span>
+                <span>Active Clients</span>
+                <span className="text-gold font-bold">5 Continents Served</span>
               </div>
               <div className="w-full bg-[oklch(0.14_0.015_70)] h-2 rounded-full overflow-hidden border border-[oklch(0.8_0.12_82/15%)]">
                 <div className="bg-gradient-to-r from-gold to-[oklch(0.92_0.08_85)] h-full w-3/4" />
@@ -134,22 +134,22 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Tile 4: Agent Deployments & Track Record (6-Col Glass Tile) */}
+          {/* Tile 4: Track Record (6-Col Glass Tile) */}
           <div className="md:col-span-6 glass-panel rounded-3xl p-7 sm:p-8 border border-[oklch(0.8_0.12_82/20%)] hover:border-gold transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
               <div className="glass-icon w-12 h-12 rounded-2xl flex items-center justify-center text-gold">
                 <Rocket className="w-5 h-5" />
               </div>
               <span className="text-xs font-mono text-gold px-3 py-1 rounded-full glass-pill border border-[oklch(0.8_0.12_82/25%)]">
-                PRODUCTION VERIFIED
+                PROVEN RESULTS
               </span>
             </div>
 
             <h4 className="font-heading font-bold text-xl text-champagne mb-2">
-              100+ Autonomous Agents Live
+              Real Impact in Daily Operations
             </h4>
             <p className="text-xs sm:text-sm text-warm-gray leading-relaxed mb-6">
-              Continuously parsing transactions, resolving inquiries, and synchronizing data streams with 99.98% deterministic precision.
+              Our digital assistants work quietly in the background, answering customer inquiries, organizing records, and updating spreadsheets with zero human errors.
             </p>
 
             <div className="grid grid-cols-2 gap-3 pt-1">
@@ -159,7 +159,7 @@ const About: React.FC = () => {
               </div>
               <div className="p-3.5 rounded-2xl glass-panel border border-[oklch(0.8_0.12_82/15%)]">
                 <span className="text-lg font-bold font-heading text-gold block">70%</span>
-                <span className="text-[10px] text-warm-gray uppercase font-mono">Avg Time Reclaimed</span>
+                <span className="text-[10px] text-warm-gray uppercase font-mono">Avg Time Saved</span>
               </div>
             </div>
           </div>

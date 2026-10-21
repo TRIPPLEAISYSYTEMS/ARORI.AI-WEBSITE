@@ -12,7 +12,7 @@ const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'model', 
-      text: 'Greetings. I am the TRIPPLE AI sovereign concierge agent. How can I assist you with custom enterprise agent engineering or workflow automation today?' 
+      text: 'Hello! I am the assistant for TRIPPLE AI SYSTEMS. How can we help automate your business workflows or routine tasks today?' 
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -44,14 +44,14 @@ const ChatBot: React.FC = () => {
       if (!apiKey) {
         // High quality intelligent mock response for agency when key is not configured
         setTimeout(() => {
-          let responseText = "TRIPPLE AI SYSTEMS specializes in bespoke multi-agent swarms, managed automation pipelines, and real-time telemetry. Founded by Given Arori Arori, our engineering team eliminates enterprise bottlenecks with sub-second decision loops. Would you like to inquire now directly on WhatsApp at 0792767922?";
+          let responseText = "TRIPPLE AI SYSTEMS builds custom AI digital assistants, hands-free business workflows, and live dashboards that take repetitive work off your plate. Founded by Given Arori, we help businesses save time and reduce errors. Would you like to chat with Given directly on WhatsApp at 0792767922?";
           const lower = userMessage.toLowerCase();
           if (lower.includes('service') || lower.includes('what do you do') || lower.includes('offer')) {
-            responseText = "Our core service matrix spans: 1) Custom AI Agent Engineering (autonomous multi-agent swarms), 2) Managed Automation Pipelines (end-to-end CRM/data sync), 3) Performance Analytics & Telemetry (sub-second operational dashboards), and 4) Enterprise System Integration with SOC-2 compliance.";
+            responseText = "Our core services include: 1) Smart AI Digital Assistants (24/7 customer replies and task handling), 2) Hands-Free Business Workflows (connecting WhatsApp, email, and spreadsheets), 3) Live Business Dashboards (see hours saved and revenue), and 4) Document & Invoice Readers (reading receipts and PDFs in seconds).";
           } else if (lower.includes('price') || lower.includes('cost') || lower.includes('pricing')) {
-            responseText = "We operate on transparent, value-based milestone pricing and dedicated engineering retainers tailored to your system's operational ROI. No unexpected license markups. You can inquire directly via WhatsApp on 0792767922!";
+            responseText = "We offer simple, transparent pricing with clear milestones. No surprise hourly fees or hidden costs. Inquire directly on WhatsApp at 0792767922 to get a fast quote!";
           } else if (lower.includes('contact') || lower.includes('email') || lower.includes('call') || lower.includes('phone') || lower.includes('whatsapp')) {
-            responseText = "You can reach Given Arori Arori directly on WhatsApp at 0792767922 (+254 792 767 922) or via email at givenarori77@gmail.com.";
+            responseText = "You can reach Given Arori directly on WhatsApp at 0792767922 (+254 792 767 922) or via email at givenarori77@gmail.com.";
           }
           setMessages(prev => [...prev, { role: 'model', text: responseText }]);
           setIsLoading(false);
@@ -60,19 +60,19 @@ const ChatBot: React.FC = () => {
       }
 
       const ai = new GoogleGenAI({ apiKey });
-      const systemInstruction = `You are the executive AI concierge for TRIPPLE AI SYSTEMS, a premier AI automation agency founded by Given Arori Arori.
+      const systemInstruction = `You are the friendly, helpful AI concierge for TRIPPLE AI SYSTEMS, founded by Given Arori.
       
-      Core Mission: Bridge complex artificial intelligence capability with high-leverage enterprise utility.
+      Core Mission: Make AI simple, practical, and profitable for business owners by eliminating repetitive computer work.
       Key Services:
-      1. Custom AI Agent Engineering (bespoke reasoning swarms, self-healing daemons).
-      2. Managed Automation Pipelines (end-to-end sync, RevOps, lead engines).
-      3. Performance Analytics & Audit (real-time telemetry dashboards).
-      4. Enterprise System Integration (SOC-2 sandboxing, legacy database bridges).
+      1. Smart AI Digital Assistants (24/7 client response, handling bookings and FAQs on WhatsApp/web).
+      2. Hands-Free Business Workflows (connecting WhatsApp, email, spreadsheets, and accounting without copy-pasting).
+      3. Live Business Dashboards (simple visual trackers showing saved hours and key numbers).
+      4. Document & Invoice Readers (reading PDFs, receipts, and order forms in seconds).
       
-      Founder: Given Arori Arori.
-      Contact: givenarori77@gmail.com | WhatsApp / Phone: 0792767922 (+254 792 767 922) | Nairobi, Kenya (Global Operations).
+      Founder: Given Arori.
+      Contact: givenarori77@gmail.com | WhatsApp / Phone: 0792767922 (+254 792 767 922) | Nairobi, Kenya (Global Delivery).
       
-      Tone: Sophisticated, articulate, authoritative, technological, concise. Answer questions directly. Prompt users to inquire now via WhatsApp (0792767922) when relevant.`;
+      Tone: Friendly, clear, down-to-earth, helpful, and concise. Never use overly technical jargon. Always explain concepts in simple everyday language that any business owner can understand. Encourage reaching out via WhatsApp at 0792767922 for a friendly chat or quick quote.`;
 
       const chat = ai.chats.create({
         model: 'gemini-2.5-flash',
@@ -95,7 +95,7 @@ const ChatBot: React.FC = () => {
         ...prev, 
         { 
           role: 'model', 
-          text: "Our neural bridge is currently calibrating. You can contact our principal team directly at givenarori77@gmail.com or via WhatsApp." 
+          text: "Our chat is temporarily unavailable. You can reach Given Arori directly on WhatsApp at 0792767922 or email givenarori77@gmail.com." 
         }
       ]);
     } finally {

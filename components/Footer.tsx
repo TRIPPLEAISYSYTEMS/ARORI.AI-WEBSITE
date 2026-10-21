@@ -12,11 +12,12 @@ const Footer: React.FC<FooterProps> = () => {
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="flex items-center space-x-2.5 mb-2">
-              <div className="w-8 h-8 rounded-full bg-[oklch(0.14_0.015_70)] border border-[oklch(0.8_0.12_82/30%)] flex items-center justify-center p-1 overflow-hidden">
+              <div className="relative w-8 h-8 flex items-center justify-center">
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#FF4500] via-[#FFAA00] to-[#FFE600] blur-sm opacity-70 animate-pulse pointer-events-none" />
                 <img 
                   src="logo.png" 
                   alt="TRIPPLE AI SYSTEMS Logo"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_8px_rgba(255,200,0,0.85)]"
                 />
               </div>
               <span className="font-heading font-extrabold text-base tracking-tight text-champagne">
@@ -24,7 +25,7 @@ const Footer: React.FC<FooterProps> = () => {
               </span>
             </div>
             <p className="text-xs text-warm-gray max-w-sm">
-              Sovereign enterprise autonomy pipelines, bespoke multi-agent engineering, and real-time operational telemetry.
+              Custom AI assistants, hands-free business workflows, and live dashboards that take repetitive work off your plate.
             </p>
           </div>
 

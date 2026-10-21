@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, CheckCircle, ArrowUpRight, Sparkles, Clock, MessageSquare } from 'lucide-react';
 
 const inquiryTopics = [
-  { label: 'Custom AI Agents', message: 'Hello Given, I would like to inquire about Custom AI Agent engineering for our company.' },
-  { label: 'Workflow Automation', message: 'Hello Given, I want to inquire about automating our business processes and CRM pipelines.' },
-  { label: 'Enterprise Telemetry', message: 'Hello Given, I am interested in an operational telemetry and bottleneck audit.' },
-  { label: 'ERP & System Integration', message: 'Hello Given, I would like to inquire about integrating AI with our enterprise database and ERP.' }
+  { label: 'Smart AI Assistants', message: 'Hello Given, I would like to inquire about building smart AI assistants for our daily business tasks.' },
+  { label: 'Automate Daily Workflows', message: 'Hello Given, I want to inquire about connecting our software and automating routine tasks.' },
+  { label: 'Live Business Dashboards', message: 'Hello Given, I am interested in seeing live performance and time-saving dashboards for our business.' },
+  { label: 'Connect Existing Software', message: 'Hello Given, I would like to inquire about connecting AI into our current tools and spreadsheets.' }
 ];
 
 const Contact: React.FC = () => {
@@ -35,20 +35,20 @@ const Contact: React.FC = () => {
             Connect Directly with <span className="gold-gradient-text">Given Arori</span>
           </h2>
           <p className="text-warm-gray text-base md:text-lg leading-relaxed">
-            Direct executive channel for enterprise AI automation inquiries, custom multi-agent builds, and immediate project scoping via WhatsApp at <strong className="text-champagne font-mono">0792767922</strong>.
+            Direct WhatsApp channel to founder Given Arori for quick questions, project estimates, or starting your business automation at <strong className="text-champagne font-mono">0792767922</strong>.
           </p>
         </div>
 
         {/* Contact Container with Modular Bento Glass Tiles */}
         <div className="grid lg:grid-cols-12 gap-8">
           
-          {/* Tile 1: Direct Contact & Enterprise Guarantees (5 Cols) */}
+          {/* Tile 1: Direct Contact & Guarantees (5 Cols) */}
           <div className="lg:col-span-5 glass-panel-elevated rounded-3xl p-8 sm:p-9 border border-[oklch(0.8_0.12_82/25%)] gold-glow space-y-7 flex flex-col justify-between">
             <div>
               <span className="text-xs uppercase font-mono tracking-wider text-gold font-semibold">Direct Communication Channels</span>
-              <h3 className="font-heading font-bold text-2xl text-champagne mt-1 mb-3">Executive Coordinates</h3>
+              <h3 className="font-heading font-bold text-2xl text-champagne mt-1 mb-3">Direct Contact</h3>
               <p className="text-xs sm:text-sm text-warm-gray leading-relaxed mb-6">
-                Connect directly with founding engineer Given Arori Arori for immediate technical feedback, NDA execution, or partnership proposals.
+                Chat directly with founder &amp; engineer Given Arori for quick feedback, privacy agreements, or project scoping.
               </p>
 
               <div className="space-y-4">
@@ -121,14 +121,14 @@ const Contact: React.FC = () => {
             <div className="p-5 rounded-2xl glass-panel border border-[oklch(0.8_0.12_82/20%)] space-y-3">
               <div className="flex items-center space-x-2 text-xs font-semibold text-gold uppercase tracking-wider font-mono">
                 <Clock className="w-4 h-4" />
-                <span>Rapid Response Commitment</span>
+                <span>Our Promise to You</span>
               </div>
               <ul className="space-y-2 text-xs text-warm-gray">
                 {[
                   "Direct founder access via WhatsApp (0792767922)",
-                  "Sub-hour inquiry triage during Kenyan business hours",
-                  "100% Client-Owned Custom Intellectual Property",
-                  "Guaranteed Fixed-Milestone Delivery"
+                  "Quick reply within 1 hour during business hours",
+                  "100% full ownership of your tools and data",
+                  "Clear, fixed pricing with no surprise fees"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center space-x-2">
                     <CheckCircle className="w-3.5 h-3.5 text-gold shrink-0" />
@@ -148,10 +148,10 @@ const Contact: React.FC = () => {
                   <span>WhatsApp Line Active: 0792767922</span>
                 </div>
                 <h3 className="font-heading font-bold text-2xl text-champagne">
-                  Inquire Now for Enterprise Automation
+                  Inquire Now for Simple Business Automation
                 </h3>
                 <p className="text-xs sm:text-sm text-warm-gray mt-1 leading-relaxed">
-                  Select your core inquiry focus or draft custom project requirements below. Your message opens directly in WhatsApp with Given Arori.
+                  Choose what you need help with or describe your business routine below. Your message opens directly in WhatsApp with Given Arori.
                 </p>
               </div>
 
@@ -186,26 +186,26 @@ const Contact: React.FC = () => {
               <div className="space-y-4">
                 <div>
                   <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
-                    Your Name or Company (Optional)
+                    Your Name or Business Name (Optional)
                   </label>
                   <input
                     type="text"
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
-                    placeholder="e.g. Elena Vance • FinTech Corp"
+                    placeholder="e.g. Sarah Mwangi • Retail & Distribution"
                     className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-mono uppercase tracking-wider text-warm-gray mb-1.5">
-                    Brief Notes or Specific Questions (Optional)
+                    Brief Notes or What You Want Automated (Optional)
                   </label>
                   <textarea
                     rows={3}
                     value={customNotes}
                     onChange={(e) => setCustomNotes(e.target.value)}
-                    placeholder="Mention volume bottlenecks, target platforms (WhatsApp, CRM, ERP), or timeline requirements..."
+                    placeholder="Mention repetitive tasks, tools you use (WhatsApp, Excel, email, CRM), or what you would like automated..."
                     className="w-full px-4 py-3 rounded-xl bg-[oklch(0.18_0.02_75/50%)] border border-[oklch(0.8_0.12_82/20%)] focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold text-sm text-champagne placeholder-[oklch(0.6_0.02_80)] transition-all resize-none"
                   />
                 </div>

@@ -96,11 +96,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'home' }) => {
           className="flex items-center space-x-2.5 group cursor-pointer" 
           onClick={(e) => handleNavigation(e, '#home')}
         >
-          <div className="w-8 h-8 rounded-full bg-[oklch(0.14_0.015_70)] border border-[oklch(0.8_0.12_82/30%)] flex items-center justify-center p-1 shadow-md shadow-[oklch(0.8_0.14_82/20%)] group-hover:scale-105 transition-transform overflow-hidden">
+          <div className="relative w-8 h-8 flex items-center justify-center group-hover:scale-110 transition-transform">
+            {/* Solar flares ambient fire glow */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#FF4500] via-[#FFAA00] to-[#FFE600] blur-sm opacity-70 group-hover:opacity-100 animate-pulse transition-opacity pointer-events-none" />
             <img 
               src="logo.png" 
               alt="TRIPPLE AI SYSTEMS Logo" 
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_8px_rgba(255,200,0,0.85)]"
             />
           </div>
           <span className="font-heading font-bold text-sm tracking-tight text-champagne hidden xs:inline-block">

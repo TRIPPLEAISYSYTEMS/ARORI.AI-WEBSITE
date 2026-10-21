@@ -1,0 +1,45 @@
+# TRIPPLE AI SYSTEMS
+
+> TRIPPLE AI SYSTEMS is a premier AI Automation Agency based in Nairobi, Kenya, engineering bespoke sovereign multi-agent architectures, managed automation pipelines, and real-time operational telemetry for enterprise organizations worldwide. Founded by Given Arori Arori.
+
+## Executive Coordinates
+- Organization: TRIPPLE AI SYSTEMS
+- Founder & Chief AI Architect: Given Arori Arori
+- Headquarters: Nairobi, Kenya (Global Operations)
+- Direct WhatsApp / Phone: 0792767922 / +254 792 767 922
+- Executive Email: givenarori77@gmail.com
+- Official Website: https://trippleai.systems/
+- Founder Portfolio: https://trippleai.systems/#founder
+- WhatsApp Direct Link: https://wa.me/254792767922
+- LinkedIn: https://www.linkedin.com/in/arori/
+
+## Core Services
+- **Custom AI Agent Engineering**: Autonomous multi-agent swarms tailored to proprietary enterprise operations. Deterministic fallback checks, self-healing daemons, sub-380ms response loops.
+- **Managed Automation Pipelines**: End-to-end resilient data pipelines that synchronize across CRMs, legacy databases, ERPs, and third-party tools 24/7 with zero data loss.
+- **Performance Analytics & Operational Audit**: Real-time telemetry dashboards exposing process bottlenecks, calculating ROI, and forecasting resource demands.
+- **Enterprise System Integration**: Secure bridges connecting modern foundation LLMs (Gemini, Claude, OpenAI) to on-premise ERPs and relational databases under SOC-2 compliant sandboxes.
+- **Cognitive Knowledge Extraction**: Multi-modal visual parsing transforming contracts, PDFs, invoices, and unstructured communications into structured database entities.
+- **Autonomous Customer Dispatch**: AI agents resolving high-friction tickets within seconds with human-in-the-loop escalation triggers.
+
+## Founder Profile: Given Arori Arori
+- Role: Founder & Chief AI Architect, TRIPPLE AI SYSTEMS
+- Academic Background: Fourth-year B.Ed Science (Mathematics & Physics), Kenyatta University
+- Expertise: Multi-agent swarm orchestration, Python, TypeScript, Gemini 3.0/2.5 Pro, LLM fine-tuning, deterministic workflow engineering, computer vision, vector search & RAG
+- Flagship Project: *Oculus* — High-throughput enterprise monitoring, anomaly detection, and automated dispatch pipeline.
+
+## Technology Stack
+- AI & LLM Infrastructure: Google Gemini (Gemini 2.5/3.0), OpenAI, Anthropic Claude, Perplexity, LangChain, LlamaIndex, CrewAI, AutoGen, Hugging Face
+- Data & Storage: PostgreSQL, Supabase, Firebase, MySQL, MongoDB, Pinecone, Chroma, Vector Embeddings
+- Automation & Orchestration: n8n, Make, Zapier, Python, REST APIs, Webhooks, Docker, Linux, Bash
+- Frontend & Visuals: TypeScript, React, Next.js, Three.js, WebGL, Tailwind CSS, Vite
+- Communications: WhatsApp Business API, Twilio, ElevenLabs Voice AI, Stripe, M-Pesa
+
+## Key Guarantees
+- 100% Client-Owned Intellectual Property (Custom agent weights, pipelines, tools, and code remain the client's sole property).
+- Zero-Leak Enterprise Sandboxing (Data in transit TLS 1.3, at rest AES-256; client data is never used to train public foundation models).
+- Value-Based Milestone Pricing (Transparent fixed-price deliverables or dedicated engineering retainers with guaranteed ROI).
+- Human Augmentation Focus (Automating repetitive drudgery so human talent focuses on high-leverage strategy).
+
+For complete technical documentation, refer to:
+- Full LLM Context: https://trippleai.systems/llms-full.txt
+- XML Sitemap: https://trippleai.systems/sitemap.xml

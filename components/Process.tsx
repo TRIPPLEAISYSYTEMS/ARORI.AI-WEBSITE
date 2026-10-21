@@ -4,45 +4,45 @@ import { Search, Code2, Rocket, ArrowRight } from 'lucide-react';
 const steps = [
   {
     id: "01",
-    phase: "Phase I",
+    phase: "Phase 1: Discovery",
     icon: Search,
-    title: "Discovery & Architectural Audit",
-    duration: "Week 1 - 2",
-    description: "We audit your existing manual operational bottlenecks, SaaS dependencies, data schemas, and API boundaries. Through strategic working sessions, we isolate high-leverage workflows with immediate 5x+ ROI potential.",
-    deliverables: ["Process Bottleneck Blueprint", "Data Security & Sandboxing Plan", "Architectural Milestone Map"]
+    title: "Finding Your Biggest Time Wasters",
+    duration: "Week 1",
+    description: "We review your daily operations to find the slow, repetitive computer tasks that eat up your team's hours, and pinpoint the easiest ones to automate first for quick cost savings.",
+    deliverables: ["List of repetitive tasks to automate", "Estimated hours and dollars saved", "Simple step-by-step rollout plan"]
   },
   {
     id: "02",
-    phase: "Phase II",
+    phase: "Phase 2: Building",
     icon: Code2,
-    title: "Agile Agent Engineering",
-    duration: "Week 3 - 6",
-    description: "Our team builds your custom multi-agent workforce in private staging sandboxes. You receive real-time preview links, inspect decision logs, and validate accuracy before any code touches production channels.",
-    deliverables: ["Custom Tool Orchestration", "Deterministic Safety Guards", "Continuous Live Test Runs"]
+    title: "Building & Testing Your Automations",
+    duration: "Weeks 2 - 4",
+    description: "We build your custom AI assistants and connect your software in a secure private test area. You get to test everything yourself with sample data and make sure it works exactly how you want.",
+    deliverables: ["Interactive private preview", "Thorough accuracy testing", "Adjustments to match your business style"]
   },
   {
     id: "03",
-    phase: "Phase III",
+    phase: "Phase 3: Launch",
     icon: Rocket,
-    title: "Production Deployment & Telemetry",
-    duration: "Week 7+",
-    description: "We deploy your autonomous agents directly into production with zero downtime. We conduct thorough team training, install real-time KPI dashboards, and continuously optimize agent performance loops.",
-    deliverables: ["Zero-Downtime Rollout", "Comprehensive Team Handover", "24/7 Monitored Self-Healing"]
+    title: "Smooth Launch & Team Training",
+    duration: "Week 5+",
+    description: "We turn on your automations smoothly without disrupting your daily business. We train your staff in simple, plain language so everyone is confident, and we keep watch 24/7 so it runs reliably.",
+    deliverables: ["Zero-downtime smooth launch", "Friendly hands-on team training", "Ongoing 24/7 monitoring & support"]
   }
 ];
 
 const Process: React.FC = () => {
   return (
-    <section id="process" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10" aria-label="Our Engineering Process">
+    <section id="process" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10" aria-label="Our Process">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="eyebrow-badge mb-3">05 / ENGINEERING PROCESS</div>
+          <div className="eyebrow-badge mb-3">03 / SIMPLE 3-STEP PROCESS</div>
           <h2 className="text-3xl md:text-5xl font-bold font-heading text-champagne mb-4">
-            From Blueprint to <span className="gold-gradient-text">Autonomous Production</span>
+            How We Work With You, <span className="gold-gradient-text">Step by Step</span>
           </h2>
           <p className="text-warm-gray text-base md:text-lg leading-relaxed">
-            A battle-tested 3-stage lifecycle structured across modular glass tiles, ensuring rapid deployment without organizational friction.
+            No confusing technical jargon or overwhelming software changes. We handle all the technical heavy lifting so your business can enjoy the time and cost savings.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ const Process: React.FC = () => {
                 {/* Deliverables List */}
                 <div className="pt-5 border-t border-[oklch(0.8_0.12_82/15%)] space-y-2">
                   <span className="text-[11px] font-semibold text-champagne uppercase tracking-wider block font-mono">
-                    Key Deliverables:
+                    What You Get:
                   </span>
                   <ul className="space-y-1.5 text-xs text-warm-gray">
                     {step.deliverables.map((item, dIdx) => (

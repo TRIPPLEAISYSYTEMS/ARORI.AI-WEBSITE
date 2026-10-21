@@ -14,50 +14,50 @@ const services: ServiceItem[] = [
   {
     id: "01",
     icon: Bot,
-    category: "Autonomous Swarms",
-    title: "Custom AI Agent Engineering",
-    description: "We architect intelligent multi-agent swarms tailored to your proprietary operations, enabling your staff to focus on strategic milestones while agents handle repetitive workflows.",
-    features: ["Autonomous reasoning loops", "Deterministic fallback checks", "Multi-agent swarm coordination"]
+    category: "Virtual Staff",
+    title: "Smart AI Digital Assistants",
+    description: "Tired of repetitive computer tasks? We build custom AI assistants tailored to how your business runs, handling daily routine work so your human staff can focus on customers and growth.",
+    features: ["Works 24/7 without getting tired", "Double-checks its work to prevent mistakes", "Acts as an extra set of hands for your team"]
   },
   {
     id: "02",
     icon: Zap,
-    category: "End-to-End Systems",
-    title: "Managed Automation Pipelines",
-    description: "From automated lead gen to continuous client onboarding, we construct resilient data pipelines that synchronize across your CRM, databases, and third-party tools 24/7.",
-    features: ["Zero-latency CRM syncing", "Self-healing pipeline daemons", "Event-driven orchestration"]
+    category: "Zero Copy-Pasting",
+    title: "Hands-Free Business Workflows",
+    description: "Connect your emails, WhatsApp, spreadsheets, and databases. When a new customer reaches out, their contact info, invoices, and follow-ups happen automatically without anyone retyping data.",
+    features: ["No more manual copy-pasting", "Instant customer follow-ups", "Runs smoothly day and night"]
   },
   {
     id: "03",
     icon: BarChart3,
-    category: "Real-Time Telemetry",
-    title: "Performance Analytics & Audit",
-    description: "Gain complete transparency into organizational throughput with real-time dashboards that expose bottlenecks, track exact cost-savings, and forecast resource demands.",
-    features: ["Sub-second metric ingestion", "Predictive bottleneck detection", "Executive ROI reporting"]
+    category: "Clear Numbers",
+    title: "Live Business Dashboards",
+    description: "Get crystal-clear visual dashboards showing how quickly orders are fulfilled, which steps cause delays, and exactly how many hours and dollars your automations save you every week.",
+    features: ["See your entire business at a glance", "Catch delays before they cost you money", "Clear, easy-to-read savings reports"]
   },
   {
     id: "04",
     icon: Network,
-    category: "Infrastructure",
-    title: "Enterprise System Integration",
-    description: "We link cutting-edge LLMs and custom agent workers directly to legacy on-premise ERPs, modern Cloud APIs, and proprietary relational databases without security trade-offs.",
-    features: ["SOC-2 compliant sandboxing", "Encrypted secrets management", "Legacy database bridges"]
+    category: "Works With Your Tools",
+    title: "Connecting Your Existing Software",
+    description: "You don't need to learn or buy new software. We safely plug smart AI right into the tools you already use every day—like your CRM, accounting software, or spreadsheets—with bank-level privacy.",
+    features: ["Works with your current software", "Bank-level confidential data protection", "Zero downtime or business interruption"]
   },
   {
     id: "05",
     icon: FileSearch,
-    category: "Document Intelligence",
-    title: "Cognitive Knowledge Extraction",
-    description: "Convert messy PDFs, incoming emails, contracts, and technical schemas into structured database entities ready for automated decision engines and instant search.",
-    features: ["Multi-modal visual parsing", "Schema validation barriers", "Vectorized neural memory"]
+    category: "Paperwork Made Easy",
+    title: "Instant Document & Invoice Reader",
+    description: "Stop spending hours typing data from paper receipts, supplier invoices, contracts, and PDF files. Our AI scans them in seconds, pulls out the key numbers, and saves them automatically.",
+    features: ["Reads invoices, receipts & contracts instantly", "Eliminates typing mistakes", "Makes all your documents instantly searchable"]
   },
   {
     id: "06",
     icon: Headphones,
-    category: "Customer Dispatch",
-    title: "Autonomous Resolution Concierge",
-    description: "Deploy customer-facing agents that resolve high-friction tickets within seconds, execute account updates autonomously, and gracefully escalate complex cases to human staff.",
-    features: ["Human-in-the-loop triggers", "Adaptive conversational tone", "Instant action execution"]
+    category: "Happy Customers",
+    title: "24/7 Instant Customer Support",
+    description: "Give your clients immediate, friendly, and helpful replies on WhatsApp or your website in seconds. When someone needs personal attention, the AI smoothly alerts your staff.",
+    features: ["Answers clients in under 5 seconds", "Polite, natural, and helpful tone", "Hands off to human staff when needed"]
   }
 ];
 
@@ -67,12 +67,12 @@ const Services: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="eyebrow-badge mb-3">02 / SERVICES MATRIX</div>
+          <div className="eyebrow-badge mb-3">02 / WHAT WE DO</div>
           <h2 className="text-3xl md:text-5xl font-bold font-heading text-champagne mb-4">
-            Bespoke Autonomy, <span className="gold-gradient-text">Engineered for Scale</span>
+            How We Help Your Business <span className="gold-gradient-text">Run on Autopilot</span>
           </h2>
           <p className="text-warm-gray text-base md:text-lg leading-relaxed">
-            Eliminate operational drag with our specialized modular glass tiles and custom glass icons. Every system is built to scale your enterprise without expanding headcount.
+            Practical, reliable AI solutions that take boring computer work off your plate, cut your operating costs, and give your customers instant service—without requiring any technical background.
           </p>
         </div>
 
@@ -127,10 +127,12 @@ const Services: React.FC = () => {
                   </ul>
 
                   <a
-                    href="#contact"
+                    href="https://wa.me/254792767922"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="pt-2 inline-flex items-center space-x-1.5 text-xs font-semibold text-gold group-hover:text-champagne transition-colors"
                   >
-                    <span>Inquire About Implementation</span>
+                    <span>Inquire About This Solution</span>
                     <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </a>
                 </div>
@@ -143,17 +145,19 @@ const Services: React.FC = () => {
         <div className="mt-12 glass-panel-elevated rounded-3xl p-8 border border-[oklch(0.8_0.12_82/25%)] flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
             <h4 className="text-xl font-bold font-heading text-champagne">
-              Need a bespoke, custom-tailored automation tile?
+              Have a unique workflow you want to automate?
             </h4>
             <p className="text-xs sm:text-sm text-warm-gray">
-              We design specialized architectures connecting on-premise infrastructure, proprietary fine-tunes, and air-gapped systems.
+              Every business is different. Tell us what task takes up the most time in your day, and we will build a custom solution for it.
             </p>
           </div>
           <a
-            href="#contact"
+            href="https://wa.me/254792767922?text=Hello%20Given%2C%20I%20have%20a%20specific%20workflow%20I%20would%20like%20to%20automate."
+            target="_blank"
+            rel="noopener noreferrer"
             className="shrink-0 px-7 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-gold text-black hover:bg-[oklch(0.86_0.16_84)] shadow-md shadow-[oklch(0.8_0.14_82/25%)] transition-all transform hover:scale-105"
           >
-            Request Custom Consultation
+            Inquire on WhatsApp
           </a>
         </div>
 

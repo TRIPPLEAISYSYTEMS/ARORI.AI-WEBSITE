@@ -4,25 +4,25 @@ import { TestimonialItem } from '../types';
 
 const testimonials: (TestimonialItem & { metrics: string; companyType: string })[] = [
   {
-    quote: "TRIPPLE AI SYSTEMS helped us reduce customer support response time by 70% and increase lead conversion by 45%. Their autonomous agents didn't just automate our processes—they transformed how our entire cross-functional team executes. The enterprise ROI was transparent within our very first quarter.",
+    quote: "TRIPPLE AI SYSTEMS cut our customer reply times by 70% and helped us close 45% more sales inquiries. Their smart digital assistants take care of all initial questions automatically on WhatsApp and web, so our sales team only talks to serious, ready-to-buy clients.",
     author: "Marcus Vance",
-    role: "CEO & Co-Founder",
-    companyType: "TechCorp Enterprise Cloud",
-    metrics: "70% Faster Turnaround • 45% Conversion Lift"
+    role: "Managing Director",
+    companyType: "Cloud Services & Hosting",
+    metrics: "70% Faster Replies • +45% More Sales"
   },
   {
-    quote: "We were skeptical about generative agent workflows in regulated healthcare operations, but Given Arori and the TRIPPLE AI team engineered bulletproof data sandboxes. The custom agents built for our triage team save us 35+ hours weekly while maintaining zero compliance anomalies.",
+    quote: "We used to spend hours every single day typing patient information from paper forms into our system. Given Arori built an automated document reader that handles it instantly, saving our staff 35+ hours every week without a single mistake.",
     author: "Elena Rostova",
-    role: "Director of Operations",
-    companyType: "HealthPlus Integrated Health",
-    metrics: "35+ Hours Reclaimed / Week • 100% Audit Pass"
+    role: "Operations Manager",
+    companyType: "Health & Medical Clinic",
+    metrics: "35+ Hours Saved Weekly • 0% Errors"
   },
   {
-    quote: "The real-time telemetry console and autonomous multi-channel dispatch have been fundamentally game-changing. We now have instant visibility across supply bottlenecks we never caught manually. It completely eliminated the order fulfillment backlog that was choking our expansion.",
+    quote: "The live business dashboard and automatic order routing were complete game-changers for our warehouse. Orders from WhatsApp and our store now get organized in seconds without anyone having to manually copy-paste tracking numbers and customer details.",
     author: "Darius K.",
-    role: "Founder & Managing Director",
-    companyType: "E-Comm Global Logistics",
-    metrics: "99.9% Order Routing Accuracy • Zero Backlog"
+    role: "Founder & Logistics Lead",
+    companyType: "Retail & E-Commerce Delivery",
+    metrics: "Instant Order Processing • Zero Backlog"
   }
 ];
 
@@ -32,12 +32,12 @@ const Testimonials: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="eyebrow-badge mb-3">06 / PROVEN CASE STUDIES</div>
+          <div className="eyebrow-badge mb-3">06 / PROVEN RESULTS</div>
           <h2 className="text-3xl md:text-5xl font-bold font-heading text-champagne mb-4">
-            Real Enterprises, <span className="gold-gradient-text">Quantifiable Outcomes</span>
+            Real Businesses, <span className="gold-gradient-text">Real Results</span>
           </h2>
           <p className="text-warm-gray text-base md:text-lg leading-relaxed">
-            Discover how visionary leaders deploy TRIPPLE AI SYSTEMS to achieve operational dominance in their respective verticals.
+            See how business owners save hours each week and grow revenue with simple, custom automations from TRIPPLE AI SYSTEMS.
           </p>
         </div>
 
