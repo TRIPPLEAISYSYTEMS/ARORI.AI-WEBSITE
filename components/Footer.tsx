@@ -33,6 +33,7 @@ const Footer: React.FC<FooterProps> = () => {
           <div className="flex flex-wrap justify-center gap-6 text-xs font-semibold text-warm-gray">
             <a href="#about" className="hover:text-gold transition-colors">About</a>
             <a href="#services" className="hover:text-gold transition-colors">Services</a>
+            <a href="#projects" className="hover:text-gold transition-colors">Projects &amp; R&amp;D</a>
             <a href="#process" className="hover:text-gold transition-colors">Process</a>
             <a href="#testimonials" className="hover:text-gold transition-colors">Case Studies</a>
             <a href="#faq" className="hover:text-gold transition-colors">FAQ</a>
