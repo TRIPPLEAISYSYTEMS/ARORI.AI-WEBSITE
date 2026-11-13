@@ -9,6 +9,7 @@ interface Project {
   timeline: string;
   tagline: string;
   image: string;
+  imageFit?: 'cover' | 'contain';
   description: string;
   vision: string;
   techStack: string[];
@@ -26,7 +27,8 @@ const projectsData: Project[] = [
     status: 'Production Ready',
     timeline: 'v5 Verified System',
     tagline: 'Institutional-grade, 100% deterministic quantitative trading suite & zero-lookahead backtest lab.',
-    image: '/src/assets/images/project_odin_trading_system_1794381999435.jpg',
+    image: '/assets/aistudio/96dfd8f2-3885-4392-a394-fca76cb48ee1_35814364.png',
+    imageFit: 'contain',
     description: 'An institutional quantitative trading platform, backtesting lab, and risk discipline suite. Built with React 19, TypeScript, and a high-performance event-driven simulation engine, ODIN evaluates declarative strategy rules against historical candle data with full cost accounting, prop-firm risk enforcement, and 53-bit cryptographic run hashes (cyrb53).',
     vision: 'To provide systemic traders with an uncompromised, institutional-grade quantitative foundation where every backtest is verifiable, every rule is enforced without bias, and every trade reflects real market mechanics.',
     techStack: ['React 19', 'TypeScript', 'Event Simulation', 'cyrb53 Hashes', 'Market Structure', 'TailwindCSS'],
@@ -128,14 +130,22 @@ export const Projects: React.FC = () => {
             >
               <div>
                 {/* Image Banner */}
-                <div className="relative h-60 sm:h-72 overflow-hidden bg-[oklch(0.16_0.02_75)]">
+                <div className={`relative h-60 sm:h-72 overflow-hidden ${project.imageFit === 'contain' ? 'bg-black flex items-center justify-center p-4 pt-12' : 'bg-[oklch(0.16_0.02_75)]'}`}>
                   <img
                     src={project.image}
                     alt={project.title}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                    className={`w-full h-full transition-transform duration-700 ${
+                      project.imageFit === 'contain'
+                        ? 'object-contain group-hover:scale-105 opacity-95 group-hover:opacity-100'
+                        : 'object-cover group-hover:scale-105 opacity-90 group-hover:opacity-100'
+                    }`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.13_0.012_70)] via-[oklch(0.13_0.012_70/40%)] to-transparent" />
+                  <div className={`absolute inset-0 pointer-events-none ${
+                    project.imageFit === 'contain'
+                      ? 'bg-gradient-to-t from-[oklch(0.13_0.012_70)] via-transparent to-transparent'
+                      : 'bg-gradient-to-t from-[oklch(0.13_0.012_70)] via-[oklch(0.13_0.012_70/40%)] to-transparent'
+                  }`} />
                   
                   {/* Category & Status Overlay */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-xs font-mono font-medium text-champagne">
@@ -266,14 +276,14 @@ export const Projects: React.FC = () => {
             </div>
 
             {/* Image Preview Container */}
-            <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-[oklch(0.8_0.12_82/25%)]">
+            <div className={`relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-[oklch(0.8_0.12_82/25%)] ${selectedProject.imageFit === 'contain' ? 'bg-black p-4' : ''}`}>
               <img
                 src={selectedProject.image}
                 alt={selectedProject.title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
+                className={`w-full h-full ${selectedProject.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 pointer-events-none">
                 <div className="flex items-center space-x-3 text-xs text-champagne font-mono">
                   <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400 text-emerald-300 font-bold">
                     Status: {selectedProject.status}
